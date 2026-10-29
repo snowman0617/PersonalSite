@@ -1,0 +1,336 @@
+/**
+ * ==============================================================================
+ * 張瀚文 Han-Wen Chang 個人專業形象網站 - 核心樣式表 (CSS)
+ * ==============================================================================
+ * 
+ * 設計概念：
+ * 本樣式表採用「柔和自然風 (Soft Organic & Medical Aesthetics)」，結合溫暖的米白底色、
+ * 柔和的鼠尾草綠 (Sage Green) 與深林青 (Forest Teal)，為生技研發與產品經理打造
+ * 兼具學術專業、親和力與現代科技感的視覺體驗。
+ *
+ * 目錄：
+ * 1. CSS 自定義變數 (Design Tokens & Color Palette)
+ * 2. 基礎全域樣式與字型設定 (Base & Typography)
+ * 3. 自定義滾動條 (Custom Scrollbar)
+ * 4. 導航列與毛玻璃特效 (Navigation & Glassmorphism)
+ * 5. 柔和卡片與微交互陰影 (Soft Card Components & Shadows)
+ * 6. 標籤與晶片徽章 (Badges & Pills)
+ * 7. 時間軸設計 (Experience Timeline)
+ * 8. 專案篩選器與卡片過渡動效 (Project Filter & Transitions)
+ * 9. 彈出視窗對話盒 (Interactive Modal)
+ * 10. Toast 浮動提示元件 (Toast Notification)
+ * 11. 列印與無障礙優化 (Print & Accessibility)
+ * ==============================================================================
+ */
+
+/* ==========================================================================
+   1. CSS 自定義變數 (Design Tokens)
+   ========================================================================== */
+:root {
+  /* 品牌柔和主色調 (生技植萃、健康與專業) */
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #16a34a;
+  --color-primary-700: #15803d;
+  --color-brand-sage: #2d6a4f;       /* 鼠尾草深綠：主色按鈕、標題高亮 */
+  --color-brand-sage-light: #e8f5ed; /* 鼠尾草淡綠：柔和背景、標籤 */
+  --color-brand-teal: #1f7a8c;       /* 醫材青藍：次要焦點、法規與技術 */
+  --color-brand-teal-light: #e8f4f8; /* 醫材淡青：背景反襯 */
+  --color-brand-warm: #d97706;       /* 溫潤琥珀：亮點徽章、成果標記 */
+  --color-brand-warm-light: #fef3c7; /* 淡琥珀背景 */
+
+  /* 中性背景色系 (柔和奶油白、暖調淺灰，避免純黑純白的刺眼對比) */
+  --bg-page: #f8fafc;                /* 全站柔和底色 */
+  --bg-page-alt: #f1f5f9;            /* 區塊交替柔和底色 */
+  --bg-card: #ffffff;                /* 卡片純淨底色 */
+  --bg-card-hover: #fcfdfd;          /* 卡片懸浮底色 */
+  --bg-glass: rgba(255, 255, 255, 0.88); /* 毛玻璃導航底色 */
+
+  /* 中性文字色系 (柔和碳灰，提升長文閱讀舒適感) */
+  --text-main: #1e293b;              /* 主標題與內文主要字色 (深灰藍，非純黑) */
+  --text-muted: #64748b;             /* 次要文字、描述與副標題 */
+  --text-light: #94a3b8;             /* 輔助標註、日期與附註 */
+
+  /* 柔和邊框與分隔線 */
+  --border-soft: #e2e8f0;            /* 預設微光邊框 */
+  --border-focus: #cbd5e1;           /* 聚焦點邊框 */
+  --border-accent: rgba(45, 106, 79, 0.25); /* 品牌強調色邊框 */
+
+  /* 柔和擴散陰影 (消除生硬黑影，使用深色帶透明度的層次感) */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 16px 36px -6px rgba(45, 106, 79, 0.12), 0 6px 16px -3px rgba(15, 23, 42, 0.04);
+  
+  /* 圓角弧度系統 (柔和風格的核心在於飽滿的圓角) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* 動畫轉場 */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   2. 基礎全域樣式與字型設定 (Base & Typography)
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+
+/* 核心基礎工具類別備援 (確保即使外部 CDN 載入稍慢，彈窗或隱藏元件也不會遮蔽頁面) */
+.hidden {
+  display: none !important;
+}
+
+/* 柔和文字選取反白效果 */
+::selection {
+  background-color: #c7eedb;
+  color: #1e3a2b;
+}
+
+/* ==========================================================================
+   3. 自定義滾動條 (Custom Scrollbar - 溫和淺色調)
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ==========================================================================
+   4. 導航列與毛玻璃特效 (Navigation & Glassmorphism)
+   ========================================================================== */
+.glass-nav {
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+  transition: all var(--transition-normal);
+}
+
+.glass-nav.scrolled {
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+  background: rgba(255, 255, 255, 0.94);
+}
+
+/* 柔和光暈特效（用於重要徽章或區塊裝飾） */
+.soft-glow {
+  box-shadow: 0 0 25px rgba(45, 106, 79, 0.12);
+}
+
+/* 背景柔光擴散球 (Ambient Background Blobs) */
+.ambient-glow-green {
+  background: radial-gradient(circle, rgba(45, 106, 79, 0.08) 0%, rgba(45, 106, 79, 0) 70%);
+}
+
+.ambient-glow-teal {
+  background: radial-gradient(circle, rgba(31, 122, 140, 0.08) 0%, rgba(31, 122, 140, 0) 70%);
+}
+
+.ambient-glow-amber {
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.06) 0%, rgba(217, 119, 6, 0) 70%);
+}
+
+/* ==========================================================================
+   5. 柔和卡片元件與微交互 (Soft Card Components)
+   ========================================================================== */
+.soft-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.soft-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border-accent);
+}
+
+/* 核心指標小卡片 (Metric Chips) */
+.metric-chip {
+  background: #ffffff;
+  border: 1px solid #e9eef2;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  transition: all var(--transition-fast);
+}
+
+.metric-chip:hover {
+  border-color: rgba(45, 106, 79, 0.3);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.06);
+}
+
+/* ==========================================================================
+   6. 標籤與晶片徽章 (Badges & Pills)
+   ========================================================================== */
+.badge-sage {
+  background-color: var(--color-brand-sage-light);
+  color: var(--color-brand-sage);
+  border: 1px solid rgba(45, 106, 79, 0.18);
+}
+
+.badge-teal {
+  background-color: var(--color-brand-teal-light);
+  color: var(--color-brand-teal);
+  border: 1px solid rgba(31, 122, 140, 0.18);
+}
+
+.badge-warm {
+  background-color: var(--color-brand-warm-light);
+  color: var(--color-brand-warm);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.badge-gray {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+/* ==========================================================================
+   7. 時間軸設計 (Experience Timeline)
+   ========================================================================== */
+.timeline-stem {
+  border-left: 2px solid #e2e8f0;
+}
+
+.timeline-node {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-brand-sage);
+  box-shadow: 0 0 0 4px #ffffff, 0 0 0 6px rgba(45, 106, 79, 0.2);
+  transition: transform var(--transition-fast);
+}
+
+.group:hover .timeline-node {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 4px #ffffff, 0 0 0 7px rgba(45, 106, 79, 0.35);
+}
+
+/* ==========================================================================
+   8. 專案篩選器與卡片過渡動效 (Project Filter & Transitions)
+   ========================================================================== */
+.filter-btn {
+  padding: 0.5rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-normal);
+  background: #ffffff;
+  color: var(--text-muted);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.filter-btn:hover {
+  background: #f8fafc;
+  color: var(--text-main);
+  border-color: #cbd5e1;
+}
+
+.filter-btn.active {
+  background: var(--color-brand-sage);
+  color: #ffffff;
+  border-color: var(--color-brand-sage);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+}
+
+/* 專案卡片淡入動效 */
+.project-card {
+  animation: fadeInCard 0.35s ease forwards;
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   9. 彈出視窗對話盒 (Interactive Modal)
+   ========================================================================== */
+.modal-backdrop {
+  background-color: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal-surface {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+  border: 1px solid #e2e8f0;
+}
+
+/* ==========================================================================
+   10. Toast 浮動提示元件 (Toast Notification)
+   ========================================================================== */
+.toast-container {
+  box-shadow: 0 10px 25px -5px rgba(45, 106, 79, 0.25), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+}
+
+/* ==========================================================================
+   11. 列印與無障礙優化 (Print & Accessibility)
+   ========================================================================== */
+@media print {
+  nav, footer, .no-print, #projectModal, #toast, .filter-btn {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .soft-card {
+    box-shadow: none !important;
+    border: 1px solid #cccccc !important;
+    break-inside: avoid;
+  }
+}
+
+/* 鍵盤聚焦無障礙輔助 */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--color-brand-sage);
+  outline-offset: 2px;
+}
