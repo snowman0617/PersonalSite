@@ -59,7 +59,7 @@
        3. 獨立樣式表 (CSS) 引進
        ========================================== -->
   <!-- 柔和自然風格、卡片微交互、自定義滾動條與無障礙樣式 -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-emerald-100 selection:text-emerald-900">
@@ -983,9 +983,9 @@
                 </div>
                 <div>
                   <div class="text-xs text-slate-500 font-medium">電子郵件 Email</div>
-                  <a href="mailto:hanwenchang.tw@gmail.com" class="text-sm sm:text-base font-semibold text-slate-800 hover:text-emerald-700 transition-colors">
+                  <button type="button" onclick="copyEmail()" class="text-sm sm:text-base font-semibold text-slate-800 hover:text-emerald-700 transition-colors text-left" title="點擊複製 Email 地址">
                     hanwenchang.tw@gmail.com
-                  </a>
+                  </button>
                 </div>
               </div>
               <button onclick="copyEmail()" class="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-medium transition-all flex items-center gap-1.5 shadow-sm no-print" title="複製 Email">
@@ -1197,6 +1197,6 @@
   <!-- ========================================================================
        區塊 12：核心互動腳本 (JavaScript) 引進
        ======================================================================== -->
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>
