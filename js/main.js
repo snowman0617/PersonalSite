@@ -139,12 +139,14 @@ function showToast(message, duration = 3200) {
 }
 
 /* ==============================================================================
- * 4. 剪貼簿一鍵複製與 PDF 履歷列印模組 (Clipboard Copy & Print Resume)
+ * 4. 剪貼簿一鍵複製模組 (Clipboard Copy)
  * ==============================================================================
  */
+const OWNER_EMAIL = 'hanwenchang.tw@gmail.com';
+const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${OWNER_EMAIL}`;
+
 function copyEmail() {
-  const email = 'hanwen0617@gmail.com';
-  copyTextToClipboard(email, 'Email 地址 (hanwen0617@gmail.com) 已複製至剪貼簿！');
+  copyTextToClipboard(OWNER_EMAIL, `Email 地址 (${OWNER_EMAIL}) 已複製至剪貼簿！`);
 }
 
 /**
@@ -377,8 +379,8 @@ const modalDetails = {
       result: '研究成果發表於遺傳學領域權威期刊《PLoS Genetics》（論文題目："PARP1 recruits DNA translocases to restrain DNA replication and facilitate DNA repair"），奠定深厚的科學實驗設計、數據嚴謹度與抗壓解決問題能力。'
     },
     externalLink: {
-      url: 'https://doi.org/10.1371/journal.pgen.1008596',
-      text: '前往 PLoS Genetics 檢視論文全文 (DOI: 10.1371/journal.pgen.1008596)'
+      url: 'https://pubmed.ncbi.nlm.nih.gov/36512630/',
+      text: '前往 PubMed 檢視論文文獻 (PMID: 36512630)'
     }
   }
 };
@@ -510,67 +512,241 @@ function closeModal() {
 }
 
 /**
+ * 開啟「索取完整 PDF 履歷」彈出對話盒
+ */
+function openResumeModal() {
+  const modal = document.getElementById('resumeModal');
+  const formView = document.getElementById('resumeFormView');
+  const successView = document.getElementById('resumeSuccessView');
+  const emailInput = document.getElementById('requesterEmail');
+  if (!modal || !formView || !successView) return;
+
+  formView.classList.remove('hidden');
+  successView.classList.add('hidden');
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+
+  if (emailInput) {
+    setTimeout(() => emailInput.focus(), 50);
+  }
+}
+
+/**
+ * 關閉「索取完整 PDF 履歷」彈出對話盒
+ */
+function closeResumeModal() {
+  const modal = document.getElementById('resumeModal');
+  if (!modal) return;
+
+  modal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+/**
+ * 處理「索取完整 PDF 履歷」表單送出（透過 FormSubmit.co 直接寄信通知本人）
+ */
+async function handleResumeRequestSubmit(e) {
+  e.preventDefault();
+
+  const emailInput = document.getElementById('requesterEmail');
+  const nameInput = document.getElementById('requesterName');
+  const submitBtn = document.getElementById('resumeSubmitBtn');
+  const formView = document.getElementById('resumeFormView');
+  const successView = document.getElementById('resumeSuccessView');
+  const confirmedEmailSpan = document.getElementById('confirmedRequesterEmail');
+  const form = document.getElementById('resumeRequestForm');
+
+  if (!emailInput || !emailInput.value.trim()) {
+    showToast('請輸入您的接收 Email 信箱！');
+    return;
+  }
+
+  const requesterEmail = emailInput.value.trim();
+  const requesterName = nameInput ? nameInput.value.trim() : '';
+  const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> <span>傳送通知中...</span>';
+  }
+
+  const payload = {
+    _subject: `[個人網站-履歷索取] ${requesterName ? requesterName + ' ' : ''}(${requesterEmail}) 申請索取 PDF 履歷`,
+    _replyto: requesterEmail,
+    _template: 'table',
+    申請項目: '索取張瀚文完整 PDF 履歷',
+    申請人稱謂或公司: requesterName || '未填寫',
+    申請人接收信箱: requesterEmail,
+    系統詢問通知: `您好！訪客 ${requesterName || ''} (${requesterEmail}) 透過個人網站申請索取您的完整 PDF 履歷，請問是否要寄送履歷給他？您可以直接按「回覆」此信件並夾帶 PDF 履歷寄出！`
+  };
+
+  try {
+    const response = await fetch(FORMSUBMIT_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok && window.location.protocol !== 'file:') {
+      throw new Error('Network response was not ok');
+    }
+
+    if (confirmedEmailSpan) confirmedEmailSpan.textContent = requesterEmail;
+    if (formView && successView) {
+      formView.classList.add('hidden');
+      successView.classList.remove('hidden');
+    }
+    if (form) form.reset();
+    showToast('感謝您的索取！我已收到通知並會盡速回覆您。');
+  } catch (err) {
+    // 若在本地 file:// 直接點開測試，仍展示成功流程並提示部署後即生效
+    if (window.location.protocol === 'file:') {
+      if (confirmedEmailSpan) confirmedEmailSpan.textContent = requesterEmail;
+      if (formView && successView) {
+        formView.classList.add('hidden');
+        successView.classList.remove('hidden');
+      }
+      if (form) form.reset();
+      showToast('已顯示感謝畫面（註：FormSubmit 寄信需在 GitHub Pages 或 HTTP 伺服器環境下運作）', 4500);
+    } else {
+      showToast('傳送時發生網路異常，請稍後再試或直接來信至 hanwenchang.tw@gmail.com');
+    }
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+    }
+  }
+}
+
+/**
  * 初始化彈窗快捷鍵與背景遮罩點擊關閉事件
  */
 function initModalListeners() {
-  const modal = document.getElementById('projectModal');
-  if (!modal) return;
+  const projectModal = document.getElementById('projectModal');
+  const resumeModal = document.getElementById('resumeModal');
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-      closeModal();
+    if (e.key === 'Escape') {
+      if (projectModal && !projectModal.classList.contains('hidden')) {
+        closeModal();
+      }
+      if (resumeModal && !resumeModal.classList.contains('hidden')) {
+        closeResumeModal();
+      }
     }
   });
 
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
+  if (projectModal) {
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) {
+        closeModal();
+      }
+    });
+  }
+
+  if (resumeModal) {
+    resumeModal.addEventListener('click', (e) => {
+      if (e.target === resumeModal) {
+        closeResumeModal();
+      }
+    });
+  }
 }
 
 /* ==============================================================================
- * 7. 聯絡表單雙模處理：Mailto 喚起與一鍵複製信件 (Contact Form Handler)
+ * 7. 聯絡表單處理：FormSubmit 網頁直寄信箱與一鍵複製信件 (Contact Form Handler)
  * ==============================================================================
  */
 function getContactFormValues() {
   const nameInput = document.getElementById('senderName');
+  const emailInput = document.getElementById('senderEmail');
   const subjectInput = document.getElementById('senderSubject');
   const messageInput = document.getElementById('senderMessage');
 
-  if (!nameInput || !subjectInput || !messageInput) return null;
+  if (!nameInput || !emailInput || !subjectInput || !messageInput) return null;
 
   return {
     name: nameInput.value.trim(),
+    email: emailInput.value.trim(),
     subject: subjectInput.value.trim(),
     message: messageInput.value.trim()
   };
 }
 
 /**
- * 表單提交：喚起預設郵件軟體，並同步將內容複製到剪貼簿作為防呆備援
+ * 表單提交：透過 FormSubmit.co 直接在網頁內將訊息與對方回信 Email 寄至本人信箱
  */
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
 
   const values = getContactFormValues();
-  if (!values || !values.name || !values.subject || !values.message) {
-    showToast('請完整填寫姓名、主旨與訊息內容，謝謝您！');
+  if (!values || !values.name || !values.email || !values.subject || !values.message) {
+    showToast('請完整填寫姓名、您的回信 Email、主旨與訊息內容，謝謝您！');
     return;
   }
 
-  const mailSubject = encodeURIComponent(`[個人網站來信] ${values.subject}`);
-  const mailBody = encodeURIComponent(
-    `您好，張瀚文先生：\n\n我是：${values.name}\n\n洽談內容：\n${values.message}\n\n------\n此信件由個人網站聯絡表單自動生成`
-  );
-  const mailtoLink = `mailto:hanwen0617@gmail.com?subject=${mailSubject}&body=${mailBody}`;
+  const submitBtn = document.getElementById('contactSubmitBtn');
+  const successBanner = document.getElementById('contactSuccessBanner');
+  const form = document.getElementById('contactForm');
+  const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
 
-  window.location.href = mailtoLink;
-  showToast('正在喚起郵件軟體...（若使用網頁版信箱，可點選右側「複製信件內容」）');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> <span>發送中...</span>';
+  }
+  if (successBanner) {
+    successBanner.classList.add('hidden');
+  }
+
+  const payload = {
+    _subject: `[個人網站來信] ${values.subject}`,
+    _replyto: values.email,
+    _template: 'table',
+    來信者稱謂: values.name,
+    對方回信Email: values.email,
+    洽談主旨: values.subject,
+    訊息內容: values.message
+  };
+
+  try {
+    const response = await fetch(FORMSUBMIT_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok && window.location.protocol !== 'file:') {
+      throw new Error('Network response was not ok');
+    }
+
+    if (form) form.reset();
+    if (successBanner) successBanner.classList.remove('hidden');
+    showToast('訊息已成功寄出！感謝您的來信，我會盡速回覆您。');
+  } catch (err) {
+    if (window.location.protocol === 'file:') {
+      if (form) form.reset();
+      if (successBanner) successBanner.classList.remove('hidden');
+      showToast('已顯示成功狀態（註：FormSubmit 寄信需在 GitHub Pages 或 HTTP 伺服器環境下運作）', 4500);
+    } else {
+      showToast(`發送時發生網路異常，您可點選右側「複製信件內容」或直接寄信至 ${OWNER_EMAIL}`);
+    }
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+    }
+  }
 }
 
 /**
- * 專為使用網頁版 Gmail / 無預設郵件軟體之 HR 設計：一鍵複製排好版的信件與收件信箱
+ * 備援功能：一鍵複製排好版的信件與收件信箱
  */
 function copyFormattedMessage() {
   const values = getContactFormValues();
@@ -579,10 +755,11 @@ function copyFormattedMessage() {
     return;
   }
 
-  const formattedText = `收件人：hanwen0617@gmail.com\n主旨：[個人網站來信] ${values.subject}\n\n您好，張瀚文先生：\n\n我是：${values.name}\n\n洽談內容：\n${values.message}`;
+  const replyLine = values.email ? `\n回信信箱：${values.email}` : '';
+  const formattedText = `收件人：${OWNER_EMAIL}\n主旨：[個人網站來信] ${values.subject}\n\n您好，張瀚文先生：\n\n我是：${values.name}${replyLine}\n\n洽談內容：\n${values.message}`;
 
   copyTextToClipboard(
     formattedText,
-    '已複製完整信件內容與收件信箱 (hanwen0617@gmail.com)，可直接貼上至您的信箱寄出！'
+    `已複製完整信件內容與收件信箱 (${OWNER_EMAIL})，可直接貼上至您的信箱寄出！`
   );
 }

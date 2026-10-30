@@ -103,6 +103,15 @@ body {
   display: none !important;
 }
 
+/* 個人照片防下載、防滑鼠拖曳與防手機長按儲存保護 */
+.protected-avatar {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
 /* 柔和文字選取反白效果 */
 ::selection {
   background-color: #c7eedb;

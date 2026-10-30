@@ -155,8 +155,8 @@
               <a href="#projects" class="px-5 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-sm sm:text-base">
                 <i class="fa-solid fa-folder-open"></i> 檢視專案實績
               </a>
-              <button onclick="printResume()" class="px-5 py-3 rounded-xl bg-white hover:bg-emerald-50/60 text-emerald-800 border border-emerald-200 font-semibold shadow-sm hover:shadow transition-all flex items-center gap-2 text-sm sm:text-base" title="列印或另存為 A4 標準 PDF 履歷">
-                <i class="fa-solid fa-file-pdf text-emerald-600"></i> 匯出 PDF 履歷
+              <button onclick="openResumeModal()" class="px-5 py-3 rounded-xl bg-white hover:bg-emerald-50/60 text-emerald-800 border border-emerald-200 font-semibold shadow-sm hover:shadow transition-all flex items-center gap-2 text-sm sm:text-base" title="留下您的 Email 以索取完整 PDF 履歷">
+                <i class="fa-solid fa-file-pdf text-emerald-600"></i> 索取 PDF 履歷
               </button>
               <a href="#contact" class="px-4 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-semibold shadow-sm hover:shadow transition-all flex items-center gap-2 text-sm">
                 <i class="fa-regular fa-envelope"></i> 聯絡諮詢
@@ -189,20 +189,25 @@
           </div>
 
           <!-- 右側：個人形象卡片與狀態徽章 -->
-          <div class="w-64 sm:w-80 lg:w-96 flex-shrink-0">
+          <div class="w-64 sm:w-72 lg:w-80 flex-shrink-0">
             <div class="relative group">
               <!-- 背景柔和擴散陰影圈 -->
               <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-400 to-teal-400 opacity-20 group-hover:opacity-35 blur-xl transition duration-500"></div>
               
               <div class="relative rounded-2xl bg-white border border-slate-200/80 p-4 shadow-xl overflow-hidden">
-                <!-- 頭像視覺區域 (若要替換真人照片，將 src 改為您的照片路徑即可) -->
-                <div class="aspect-square w-full rounded-xl overflow-hidden bg-slate-100 relative">
-                  <img src="images/avatar-profile.svg" 
-                       alt="張瀚文 Han-Wen Chang 個人專業形象視覺" 
-                       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <!-- 頭像視覺區域 (含防右鍵另存、防拖曳、防手機長按與透明遮罩保護) -->
+                <div class="aspect-[4/5] w-full rounded-xl overflow-hidden bg-slate-100 relative select-none" oncontextmenu="return false;">
+                  <img src="images/profile-photo.jpg" 
+                       alt="張瀚文 Han-Wen Chang 個人專業形象照" 
+                       draggable="false"
+                       oncontextmenu="return false;"
+                       class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 protected-avatar">
                   
+                  <!-- 透明防下載保護遮罩 (阻絕滑鼠直接點擊或拖拉底層圖片) -->
+                  <div class="absolute inset-0 z-10" oncontextmenu="return false;" aria-hidden="true"></div>
+
                   <!-- 求職狀態浮動條 -->
-                  <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/75 via-slate-900/35 to-transparent p-3.5 flex justify-center">
+                  <div class="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent p-3.5 flex justify-center">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50/95 text-emerald-800 text-xs font-semibold shadow-sm border border-emerald-200">
                       <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Open to Work · 隨時可到職
                     </span>
@@ -816,8 +821,8 @@
                 <button onclick="openModal('plos-genetics')" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5">
                   查看研究重點 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </button>
-                <a href="https://doi.org/10.1371/journal.pgen.1008596" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-slate-500 hover:text-teal-700 flex items-center gap-1" title="前往 PLoS Genetics 閱讀論文全文 (DOI)">
-                  DOI 全文 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36512630/" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-slate-500 hover:text-teal-700 flex items-center gap-1" title="前往 PubMed 檢視論文文獻 (PMID: 36512630)">
+                  PubMed 論文 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                 </a>
               </div>
             </div>
@@ -978,8 +983,8 @@
                 </div>
                 <div>
                   <div class="text-xs text-slate-500 font-medium">電子郵件 Email</div>
-                  <a href="mailto:hanwen0617@gmail.com" class="text-sm sm:text-base font-semibold text-slate-800 hover:text-emerald-700 transition-colors">
-                    hanwen0617@gmail.com
+                  <a href="mailto:hanwenchang.tw@gmail.com" class="text-sm sm:text-base font-semibold text-slate-800 hover:text-emerald-700 transition-colors">
+                    hanwenchang.tw@gmail.com
                   </a>
                 </div>
               </div>
@@ -1001,45 +1006,64 @@
               </div>
             </div>
 
-            <!-- 學術發表與快速履歷匯出卡片 -->
+            <!-- 開源社群、學術發表與履歷索取卡片 -->
             <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-              <div class="text-xs text-slate-500 font-medium mb-3">學術實績連結與履歷存檔</div>
+              <div class="text-xs text-slate-500 font-medium mb-3">開源社群、學術實績與履歷索取</div>
               <div class="flex flex-wrap gap-2.5">
-                <a href="https://doi.org/10.1371/journal.pgen.1008596" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm">
-                  <i class="fa-solid fa-book-journal-whills text-emerald-700"></i> PLoS Genetics 論文全文
+                <a href="https://github.com/snowman0617" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm">
+                  <i class="fa-brands fa-github text-slate-800 text-sm"></i> GitHub 個人主頁
                 </a>
-                <button onclick="printResume()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-teal-50 text-slate-700 hover:text-teal-800 border border-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm no-print">
-                  <i class="fa-solid fa-print text-teal-700"></i> 列印 / 儲存 PDF 履歷
+                <a href="https://pubmed.ncbi.nlm.nih.gov/36512630/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm">
+                  <i class="fa-solid fa-book-journal-whills text-emerald-700"></i> PLoS Genetics 論文 (PubMed)
+                </a>
+                <button onclick="openResumeModal()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-teal-50 text-slate-700 hover:text-teal-800 border border-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm no-print">
+                  <i class="fa-solid fa-file-pdf text-teal-700"></i> 索取 PDF 履歷
                 </button>
               </div>
             </div>
 
           </div>
 
-          <!-- 右側：即時發送信件互動表單 -->
+          <!-- 右側：網頁直寄信箱互動表單 -->
           <div class="soft-card p-6 sm:p-8 no-print">
             <h4 class="text-lg font-bold text-slate-800 mb-1">發送快速洽談訊息</h4>
-            <p class="text-xs text-slate-500 mb-5">填寫以下資訊，可直接喚起郵件軟體寄出，或一鍵複製排好版的信件內容（適合使用網頁版 Gmail 之招募人員）：</p>
+            <p class="text-xs text-slate-500 mb-5">填寫以下資訊並留下您的回信 Email，即可直接透過本網頁將訊息寄至我的信箱（免跳轉郵件軟體）：</p>
 
-            <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
-              <div>
-                <label for="senderName" class="block text-xs font-semibold text-slate-700 mb-1">您的姓名 / 公司稱謂 *</label>
-                <input type="text" id="senderName" required placeholder="例如：XX生技 林經理 / HR 王小姐" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
+            <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-3.5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div>
+                  <label for="senderName" class="block text-xs font-semibold text-slate-700 mb-1">您的姓名 / 公司稱謂 *</label>
+                  <input type="text" id="senderName" name="name" required placeholder="例如：XX生技 林經理" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
+                </div>
+
+                <div>
+                  <label for="senderEmail" class="block text-xs font-semibold text-slate-700 mb-1">您的回信 Email *</label>
+                  <input type="email" id="senderEmail" name="email" required placeholder="例如：hr@company.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
+                </div>
               </div>
 
               <div>
                 <label for="senderSubject" class="block text-xs font-semibold text-slate-700 mb-1">洽談主旨 *</label>
-                <input type="text" id="senderSubject" required placeholder="例如：生技研發專案經理 (PM) 面談邀請" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
+                <input type="text" id="senderSubject" name="subject" required placeholder="例如：生技研發專案經理 (PM) 面談邀請" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
               </div>
 
               <div>
                 <label for="senderMessage" class="block text-xs font-semibold text-slate-700 mb-1">訊息內容 *</label>
-                <textarea id="senderMessage" rows="4" required placeholder="請簡要說明職缺內容、面談時間或合作需求..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors"></textarea>
+                <textarea id="senderMessage" name="message" rows="3" required placeholder="請簡要說明職缺內容、面談時間或合作需求..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors"></textarea>
+              </div>
+
+              <!-- 表單送出成功反饋區塊 (預設隱藏) -->
+              <div id="contactSuccessBanner" class="hidden p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs leading-relaxed flex items-start gap-2.5">
+                <i class="fa-solid fa-circle-check text-emerald-600 text-sm mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <strong class="font-bold block">訊息已成功寄出！感謝您的來信。</strong>
+                  <span>我已收到您的訊息與回信信箱，將會盡速與您聯繫回覆。</span>
+                </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                <button type="submit" class="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
-                  <i class="fa-regular fa-paper-plane"></i> 喚起郵件軟體寄出
+                <button type="submit" id="contactSubmitBtn" class="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
+                  <i class="fa-regular fa-paper-plane"></i> <span>直接發送訊息</span>
                 </button>
                 <button type="button" onclick="copyFormattedMessage()" class="w-full py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-emerald-800 text-sm font-semibold transition-all flex items-center justify-center gap-2 border border-slate-200">
                   <i class="fa-regular fa-copy"></i> 複製信件內容與信箱
@@ -1094,6 +1118,66 @@
       <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
         <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-colors">
           關閉視窗
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       區塊 10B：索取 PDF 履歷專屬彈出視窗 (Resume Request Modal)
+       輸入 Email 後直接發送通知至 hanwenchang.tw@gmail.com，並顯示感謝回覆訊息
+       ======================================================================== -->
+  <div id="resumeModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle">
+    <div class="relative w-full max-w-md modal-surface p-6 sm:p-8 text-left">
+      <!-- 關閉視窗右上按鈕 -->
+      <button onclick="closeResumeModal()" class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" aria-label="關閉視窗">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <!-- 狀態 1：輸入 Email 索取表單 -->
+      <div id="resumeFormView">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl mb-4 border border-emerald-200/60">
+          <i class="fa-solid fa-file-pdf"></i>
+        </div>
+        <h3 id="resumeModalTitle" class="text-xl font-bold text-slate-800 mb-1.5">索取完整 PDF 履歷</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
+          為保護個人資料隱私，完整版履歷採信箱寄送制。請留下您的聯絡 Email，系統將立即通知我，我會盡速將最新 PDF 履歷寄達您的信箱！
+        </p>
+
+        <form id="resumeRequestForm" onsubmit="handleResumeRequestSubmit(event)" class="space-y-4">
+          <div>
+            <label for="requesterEmail" class="block text-xs font-semibold text-slate-700 mb-1">您的接收 Email 信箱 *</label>
+            <input type="email" id="requesterEmail" required placeholder="例如：hr@company.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
+          </div>
+
+          <div>
+            <label for="requesterName" class="block text-xs font-semibold text-slate-700 mb-1">您的公司 / 稱謂（選填，方便稱呼您）</label>
+            <input type="text" id="requesterName" placeholder="例如：XX生技 林經理 / HR 招募團隊" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
+          </div>
+
+          <div class="pt-2 flex items-center justify-end gap-2.5">
+            <button type="button" onclick="closeResumeModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-colors">
+              取消
+            </button>
+            <button type="submit" id="resumeSubmitBtn" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
+              <i class="fa-regular fa-paper-plane"></i> <span>送出索取通知</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 狀態 2：送出成功感謝畫面 (預設隱藏) -->
+      <div id="resumeSuccessView" class="hidden text-center py-4">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h4 class="text-xl font-bold text-slate-800 mb-2">感謝您的索取！</h4>
+        <p class="text-sm text-slate-600 leading-relaxed mb-6">
+          系統已將您的索取通知與信箱（<span id="confirmedRequesterEmail" class="font-semibold text-emerald-800"></span>）發送給我。<br>
+          我收到通知後會<strong class="text-slate-800">盡速回覆並將完整 PDF 履歷寄給您</strong>，非常期待與您進一步交流！
+        </p>
+        <button type="button" onclick="closeResumeModal()" class="w-full py-2.5 px-5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold shadow-sm transition-all">
+          完成並關閉
         </button>
       </div>
     </div>

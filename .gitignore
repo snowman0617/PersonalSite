@@ -1,0 +1,7 @@
+# 忽略本地高畫質原始照片與私人 PDF 履歷檔案，避免上傳至公開 GitHub 倉庫
+AI 6.jpg
+*.pdf
+
+# 系統與編輯器暫存檔
+.DS_Store
+Thumbs.db
