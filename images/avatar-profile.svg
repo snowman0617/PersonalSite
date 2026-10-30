@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ecfdf5" />
+      <stop offset="50%" stop-color="#f0fdfa" />
+      <stop offset="100%" stop-color="#e0f2fe" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d6a4f" />
+      <stop offset="100%" stop-color="#1f7a8c" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.2" />
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- 背景基底 -->
+  <rect width="400" height="400" fill="url(#bgGrad)" />
+
+  <!-- 裝飾網格與生醫科技幾何背景圈 -->
+  <circle cx="320" cy="80" r="110" fill="url(#accentGrad)" />
+  <circle cx="70" cy="310" r="95" fill="url(#accentGrad)" />
+  <circle cx="200" cy="185" r="135" fill="none" stroke="#2d6a4f" stroke-width="1" stroke-dasharray="6 6" opacity="0.25" />
+  <circle cx="200" cy="185" r="112" fill="none" stroke="#1f7a8c" stroke-width="1.5" opacity="0.18" />
+
+  <!-- 分子與 AI 節點連線裝飾 -->
+  <g stroke="#1f7a8c" stroke-width="1.5" opacity="0.35">
+    <line x1="75" y1="95" x2="115" y2="125" />
+    <line x1="115" y1="125" x2="95" y2="165" />
+    <line x1="315" y1="110" x2="285" y2="145" />
+    <line x1="285" y1="145" x2="325" y2="180" />
+  </g>
+  <circle cx="75" cy="95" r="5" fill="#2d6a4f" opacity="0.45" />
+  <circle cx="115" cy="125" r="4" fill="#1f7a8c" opacity="0.45" />
+  <circle cx="95" cy="165" r="3.5" fill="#d97706" opacity="0.45" />
+  <circle cx="315" cy="110" r="5" fill="#1f7a8c" opacity="0.45" />
+  <circle cx="285" cy="145" r="4" fill="#2d6a4f" opacity="0.45" />
+  <circle cx="325" cy="180" r="3.5" fill="#d97706" opacity="0.45" />
+
+  <!-- 中心人物專業剪影與徽章卡 -->
+  <g filter="url(#softShadow)">
+    <circle cx="200" cy="175" r="88" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+    <clipPath id="avatarClip">
+      <circle cx="200" cy="175" r="84" />
+    </clipPath>
+    <g clip-path="url(#avatarClip)">
+      <rect x="116" y="91" width="168" height="168" fill="url(#primaryGrad)" opacity="0.08" />
+      <!-- 現代商務專業人物剪影 -->
+      <circle cx="200" cy="150" r="28" fill="url(#primaryGrad)" />
+      <path d="M144 258 C144 212 168 194 200 194 C232 194 256 212 256 258 Z" fill="url(#primaryGrad)" />
+      <!-- 領帶/生醫V領細節 -->
+      <path d="M190 195 L200 225 L210 195 Z" fill="#ffffff" opacity="0.85" />
+      <path d="M197 205 L200 238 L203 205 Z" fill="#d97706" opacity="0.9" />
+    </g>
+  </g>
+
+  <!-- 底部領域識別膠囊標籤 -->
+  <g filter="url(#softShadow)">
+    <rect x="65" y="282" width="270" height="44" rx="22" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="200" y="301" font-family="'Inter', 'Noto Sans TC', sans-serif" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">HAN-WEN CHANG · 張瀚文</text>
+    <text x="200" y="317" font-family="'Inter', 'Noto Sans TC', sans-serif" font-size="10.5" font-weight="600" fill="#2d6a4f" text-anchor="middle">Biotech R&amp;D · Medical Device · Agentic AI</text>
+  </g>
+</svg>
+

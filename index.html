@@ -3,9 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="張瀚文 Han-Wen Chang 個人專業形象網站 - 生技研發專案經理 (R&D PM) 與產品經理 (Product Manager)，專精於生醫儀器、試劑開發、ISO 醫材法規、SBIR 國家專案與 AI 自動化工作流。">
+  <meta name="description" content="張瀚文 Han-Wen Chang 個人專業形象網站 - 生技研發專案經理 (R&D PM) 與產品經理 (Product Manager)，專精於生醫儀器、試劑開發、ISO 醫材法規、SBIR 國家專案與 Agentic AI 自動化工作流。">
   <meta name="author" content="張瀚文 Han-Wen Chang">
+  <meta name="keywords" content="張瀚文, Han-Wen Chang, 生技專案經理, R&D PM, 產品經理, 醫療器材研發, ISO 13485, SBIR, Agentic AI, 成功大學生科所">
+  
+  <!-- Open Graph 社群分享預覽標籤 (供 Line, LinkedIn, Slack 等平台抓取預覽卡) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="張瀚文 Han-Wen Chang | 生技研發專案經理 (R&D PM) & 產品經理">
+  <meta property="og:description" content="4年跨領域實績：生物科技 × 醫材法規 (ISO 13485/14971) × 2度主導 SBIR 國家專案 × 400hr Agentic AI 應用工程。連結實驗室技術與商業市場的關鍵橋樑。">
+  <meta property="og:image" content="images/avatar-profile.svg">
+
   <title>張瀚文 Han-Wen Chang | 生技研發專案經理 & 產品經理</title>
+
+  <!-- 網站內嵌 SVG Favicon (HW 品牌識別圖示) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23059669'/%3E%3Cstop offset='100%25' stop-color='%231f7a8c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='40' font-family='Inter,sans-serif' font-size='24' font-weight='800' fill='white' text-anchor='middle'%3EHW%3C/text%3E%3C/svg%3E">
   
   <!-- ==========================================
        1. 外部資源引進 (Tailwind CSS, 字體與圖標)
@@ -54,7 +66,7 @@
 
   <!-- ========================================================================
        區塊 1：全域導航列 (Navigation Header)
-       包含：品牌 Logo、桌機選單、行動版漢堡選單與即時展開列表
+       包含：品牌 Logo、桌機選單 (支援 ScrollSpy 自動高亮)、行動版漢堡選單
        ======================================================================== -->
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300" id="navbar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -71,12 +83,12 @@
       </a>
 
       <!-- 桌機版導航選單 (螢幕寬度 >= 768px 時顯示) -->
-      <nav class="hidden md:flex items-center space-x-1 lg:space-x-4 text-sm font-medium text-slate-600">
-        <a href="#about" class="px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">關於我</a>
-        <a href="#skills" class="px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">核心專業</a>
-        <a href="#experience" class="px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">工作歷程</a>
-        <a href="#projects" class="px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">專案實績</a>
-        <a href="#education" class="px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">學歷與認證</a>
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium text-slate-600" aria-label="主要導航選單">
+        <a href="#about" data-nav="about" class="nav-link px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">核心理念</a>
+        <a href="#skills" data-nav="skills" class="nav-link px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">專業矩陣</a>
+        <a href="#experience" data-nav="experience" class="nav-link px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">工作歷程</a>
+        <a href="#projects" data-nav="projects" class="nav-link px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">專案實績</a>
+        <a href="#education" data-nav="education" class="nav-link px-3.5 py-2 rounded-xl hover:text-emerald-800 hover:bg-emerald-50/80 transition-all">學歷與培訓</a>
         <a href="#contact" class="ml-2 px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-medium transition-all shadow-sm hover:shadow">
           聯絡諮詢
         </a>
@@ -90,11 +102,11 @@
 
     <!-- 行動版下拉導航選單 (預設隱藏，由 main.js 控制顯隱) -->
     <div id="mobileMenu" class="hidden md:hidden bg-white/95 border-b border-slate-200 px-4 pt-2 pb-6 space-y-2 shadow-lg">
-      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-lg text-base text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">關於我</a>
-      <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-lg text-base text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">核心專業</a>
+      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-lg text-base text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">核心理念</a>
+      <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-lg text-base text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">專業矩陣</a>
       <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-lg text-base text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">工作歷程</a>
       <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg text-base text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">專案實績</a>
-      <a href="#education" class="mobile-nav-link block px-3 py-2 rounded-lg text-base text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">學歷與認證</a>
+      <a href="#education" class="mobile-nav-link block px-3 py-2 rounded-lg text-base text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">學歷與培訓</a>
       <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg text-base text-center bg-emerald-700 text-white font-medium shadow-sm">聯絡諮詢</a>
     </div>
   </header>
@@ -102,7 +114,7 @@
   <main>
     <!-- ========================================================================
          區塊 2：主視覺專區 (Hero Section)
-         包含：自我核心定位、即時求職狀態、關鍵成就指標晶片、行動按鈕與個人頭像
+         包含：自我核心定位、即時求職狀態、關鍵成就指標晶片、行動按鈕與個人視覺卡
          ======================================================================== -->
     <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-gradient-to-b from-emerald-50/40 via-white to-slate-50/50">
       
@@ -120,7 +132,7 @@
             <!-- 實績摘要徽章 -->
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs sm:text-sm font-medium mb-6 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-              4年跨領域實績：生物科技 × 醫材法規 × 專案管理 × AI自動化
+              跨領域實戰：生醫研發 × 醫材法規 × 專案管理 × Agentic AI
             </div>
 
             <!-- 姓名主標題 -->
@@ -135,15 +147,18 @@
 
             <!-- 專業簡介引言 -->
             <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
-              國立成功大學生命科學碩士。擁有 2 度主導經濟部 SBIR 計畫成功經驗（累計補助 146 萬），專精於分子生物技術商業化轉型、ISO 13485/14971 醫療器材法規、健康食品查驗登記與臨床試驗統籌。善於運用 Agentic AI 與工作流自動化優化流程，是連結「實驗室技術」與「商業市場」的關鍵橋樑。
+              國立成功大學生命科學碩士。具備 4 年生技醫材與試劑研發管考資歷，2 度主導經濟部 SBIR 國家專案、熟悉 ISO 13485/14971 醫材品質與風險管理、EN 13612 體外診斷確效及臨床試驗統籌。2026 年完成勞動部 400 小時「Agentic AI 應用開發與部署」專業培訓，致力於以 AI 自動化與數據思維賦能生醫產品商業化落地。
             </p>
 
             <!-- 快速操作呼籲 (CTA Buttons) -->
-            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 mb-10">
-              <a href="#projects" class="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-10 no-print">
+              <a href="#projects" class="px-5 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-sm sm:text-base">
                 <i class="fa-solid fa-folder-open"></i> 檢視專案實績
               </a>
-              <a href="#contact" class="px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-semibold shadow-sm hover:shadow transition-all flex items-center gap-2">
+              <button onclick="printResume()" class="px-5 py-3 rounded-xl bg-white hover:bg-emerald-50/60 text-emerald-800 border border-emerald-200 font-semibold shadow-sm hover:shadow transition-all flex items-center gap-2 text-sm sm:text-base" title="列印或另存為 A4 標準 PDF 履歷">
+                <i class="fa-solid fa-file-pdf text-emerald-600"></i> 匯出 PDF 履歷
+              </button>
+              <a href="#contact" class="px-4 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-semibold shadow-sm hover:shadow transition-all flex items-center gap-2 text-sm">
                 <i class="fa-regular fa-envelope"></i> 聯絡諮詢
               </a>
               <button onclick="copyEmail()" class="px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-emerald-800 text-sm transition-all flex items-center gap-2" title="快速複製 Email 地址至剪貼簿">
@@ -154,20 +169,20 @@
             <!-- 四大關鍵成果指標晶片 (Metric Chips) -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
               <div class="metric-chip p-3.5">
-                <div class="text-xl sm:text-2xl font-bold text-emerald-700">4+ 年</div>
-                <div class="text-xs text-slate-500 mt-1 font-medium">跨領域生技研發與 PM</div>
+                <div class="text-xl sm:text-2xl font-bold text-emerald-700">4 年</div>
+                <div class="text-xs text-slate-500 mt-1 font-medium">生醫研發與 PM 資歷</div>
               </div>
               <div class="metric-chip p-3.5">
-                <div class="text-xl sm:text-2xl font-bold text-teal-700">2 次</div>
-                <div class="text-xs text-slate-500 mt-1 font-medium">SBIR 國家專案主持</div>
+                <div class="text-xl sm:text-2xl font-bold text-teal-700">2 案</div>
+                <div class="text-xs text-slate-500 mt-1 font-medium">經濟部 SBIR 專案主導</div>
               </div>
               <div class="metric-chip p-3.5">
-                <div class="text-xl sm:text-2xl font-bold text-sky-700">IF 6.02</div>
+                <div class="text-xl sm:text-2xl font-bold text-sky-700">400 hr</div>
+                <div class="text-xs text-slate-500 mt-1 font-medium">Agentic AI 開發實訓</div>
+              </div>
+              <div class="metric-chip p-3.5">
+                <div class="text-xl sm:text-2xl font-bold text-amber-700">IF 6.02</div>
                 <div class="text-xs text-slate-500 mt-1 font-medium">PLoS Genetics 期刊發表</div>
-              </div>
-              <div class="metric-chip p-3.5">
-                <div class="text-xl sm:text-2xl font-bold text-amber-700">健字號</div>
-                <div class="text-xs text-slate-500 mt-1 font-medium">衛部健食字第 A00445 號</div>
               </div>
             </div>
 
@@ -180,17 +195,16 @@
               <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-400 to-teal-400 opacity-20 group-hover:opacity-35 blur-xl transition duration-500"></div>
               
               <div class="relative rounded-2xl bg-white border border-slate-200/80 p-4 shadow-xl overflow-hidden">
-                <!-- 頭像照片區域 -->
+                <!-- 頭像視覺區域 (若要替換真人照片，將 src 改為您的照片路徑即可) -->
                 <div class="aspect-square w-full rounded-xl overflow-hidden bg-slate-100 relative">
-                  <img src="https://placehold.co/400x400/e8f5ed/2d6a4f?text=Han-Wen+Chang" 
-                       alt="張瀚文 Han-Wen Chang 個人頭像" 
-                       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                       onerror="this.src='https://placehold.co/400x400/e8f4f8/1f7a8c?text=張瀚文'">
+                  <img src="images/avatar-profile.svg" 
+                       alt="張瀚文 Han-Wen Chang 個人專業形象視覺" 
+                       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                   
                   <!-- 求職狀態浮動條 -->
-                  <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/75 via-slate-900/40 to-transparent p-4">
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 text-xs font-semibold shadow-sm border border-emerald-200">
-                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> 待業中 · 一個月內可到職
+                  <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/75 via-slate-900/35 to-transparent p-3.5 flex justify-center">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50/95 text-emerald-800 text-xs font-semibold shadow-sm border border-emerald-200">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Open to Work · 隨時可到職
                     </span>
                   </div>
                 </div>
@@ -198,12 +212,12 @@
                 <!-- 基本資訊屬性卡 -->
                 <div class="mt-4 space-y-2.5">
                   <div class="flex items-center justify-between text-xs text-slate-600">
-                    <span><i class="fa-solid fa-location-dot mr-1 text-emerald-600"></i> 新北市中和區</span>
+                    <span><i class="fa-solid fa-location-dot mr-1 text-emerald-600"></i> 雙北地區 (中和)</span>
                     <span><i class="fa-solid fa-graduation-cap mr-1 text-teal-600"></i> 成大生科碩士</span>
                   </div>
                   <div class="flex items-center justify-between text-xs text-slate-600">
-                    <span><i class="fa-solid fa-briefcase mr-1 text-sky-600"></i> 期望：PM / 研究員</span>
-                    <span><i class="fa-solid fa-laptop-code mr-1 text-amber-600"></i> 支持遠端工作</span>
+                    <span><i class="fa-solid fa-briefcase mr-1 text-sky-600"></i> 目標：PM / 研發 / 法規</span>
+                    <span><i class="fa-solid fa-laptop-code mr-1 text-amber-600"></i> 支援混合與遠端辦公</span>
                   </div>
                 </div>
               </div>
@@ -216,7 +230,7 @@
 
     <!-- ========================================================================
          區塊 3：核心工作理念 (About Section)
-         包含：三大核心價值主張 (專案領導、商業思維、AI流程工程)
+         聚焦：跨界 PM 管理哲學與方法論（與後方具體工作經歷區隔，避免文字重複）
          ======================================================================== -->
     <section id="about" class="py-20 bg-slate-50/70 border-t border-slate-200/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -224,75 +238,75 @@
         <!-- 區塊標題 -->
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="text-xs uppercase tracking-widest text-emerald-700 font-bold mb-2">Core Philosophy</h2>
-          <h3 class="text-3xl font-bold text-slate-800 tracking-tight">連結「實驗室」與「市場」的橋樑</h3>
+          <h3 class="text-3xl font-bold text-slate-800 tracking-tight">連結「實驗室技術」與「商業市場」的橋樑</h3>
           <div class="w-16 h-1 bg-gradient-to-r from-emerald-600 to-teal-500 mx-auto mt-4 rounded-full"></div>
-          <p class="text-slate-600 mt-4 leading-relaxed">
-            我不將自己侷限於實驗桌前。我的職涯橫跨研發（R&D）、生產管理（PM）與法規事務（RA），致力於讓尖端科學轉化為具備商業價值與合規性的穩定產品。
+          <p class="text-slate-600 mt-4 leading-relaxed text-sm sm:text-base">
+            生醫產品的成功，不只取決於實驗桌上的數據，更仰賴嚴謹的法規佈局、穩健的供應鏈成本結構，以及高效的跨部門協作。我以三大核心方法論推動專案落地：
           </p>
         </div>
 
         <!-- 三大核心價值卡片網格 -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          <!-- 核心價值卡 1：專案領導 -->
+          <!-- 核心價值卡 1：跨職能專案治理 -->
           <div class="soft-card p-8 group">
             <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl mb-6 group-hover:scale-110 group-hover:bg-emerald-100 transition-all">
               <i class="fa-solid fa-compass-drafting"></i>
             </div>
-            <h4 class="text-xl font-bold text-slate-800 mb-3">專案領導與逆境突破</h4>
+            <h4 class="text-xl font-bold text-slate-800 mb-3">跨職能專案治理與敏捷應變</h4>
             <p class="text-slate-600 text-sm leading-relaxed mb-4">
-              具備高抗壓性與危機處理敏銳度。曾臨危受命接手落後之 SBIR 專案，迅速重整產學醫跨界資源，建立 RT-qPCR 與 Western Blot 關鍵實驗 SOP，最終逆轉落後局勢並獲經濟部全額補助。
+              生醫研發常伴隨高度不確定性。我擅長擔任生技研發、硬體工程（光學/電子/機構）與臨床醫院之間的「共同語言翻譯者」，透過關鍵路徑拆解與風險預警機制，在面對技術瓶頸或斷料危機時迅速重組資源。
             </p>
             <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-3">
               <li class="flex items-start gap-1.5">
                 <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
-                <span>累積獲 SBIR 補助款 146 萬元</span>
+                <span>里程碑查核點 (Milestone) 與滾動式風險盤點</span>
               </li>
               <li class="flex items-start gap-1.5">
                 <i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>
-                <span>跨部門排程動態調整與零組件 EOL 危機化解</span>
+                <span>產、學、醫三方多中心資源對齊與溝通推進</span>
               </li>
             </ul>
           </div>
 
-          <!-- 核心價值卡 2：商業思維 -->
+          <!-- 核心價值卡 2：法規驅動的商業化思維 -->
           <div class="soft-card p-8 group">
             <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center text-xl mb-6 group-hover:scale-110 group-hover:bg-teal-100 transition-all">
-              <i class="fa-solid fa-chart-line"></i>
+              <i class="fa-solid fa-scale-balanced"></i>
             </div>
-            <h4 class="text-xl font-bold text-slate-800 mb-3">商業思維與供應鏈把關</h4>
+            <h4 class="text-xl font-bold text-slate-800 mb-3">法規驅動的產品商業化思維</h4>
             <p class="text-slate-600 text-sm leading-relaxed mb-4">
-              研發不閉門造車。曾主動提出醫療儀器由硬體轉型「儀器+試劑」之商業模式，產出競品法規壁壘報告；在生管方面建置採購比價機制降本 10%，並獨立解決中藥材報關法規爭議。
+              在生技醫療器材與體外診斷 (IVD) 領域，「合規性」就是最強的商業護城河。我習慣在產品開發初期即導入設計管制 (Design Control) 與競品法規壁壘分析，並同步把關原物料採購與進出口合規，讓產品兼具毛利空間與市場准入優勢。
             </p>
             <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-3">
               <li class="flex items-start gap-1.5">
                 <i class="fa-solid fa-check text-teal-700 mt-0.5"></i>
-                <span>建立原物料比價制度降低 10% 成本</span>
+                <span>以法規標準倒推研發規格，降低後期重工成本</span>
               </li>
               <li class="flex items-start gap-1.5">
                 <i class="fa-solid fa-check text-teal-700 mt-0.5"></i>
-                <span>排除海關「藥食同源」扣留爭議確保零延宕</span>
+                <span>從硬體思維轉向「設備＋耗材試劑」經常性營收佈局</span>
               </li>
             </ul>
           </div>
 
-          <!-- 核心價值卡 3：AI流程工程 -->
+          <!-- 核心價值卡 3：Agentic AI 賦能研發營運 -->
           <div class="soft-card p-8 group">
             <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center text-xl mb-6 group-hover:scale-110 group-hover:bg-sky-100 transition-all">
               <i class="fa-solid fa-robot"></i>
             </div>
-            <h4 class="text-xl font-bold text-slate-800 mb-3">擁抱創新：AI 流程工程</h4>
+            <h4 class="text-xl font-bold text-slate-800 mb-3">Agentic AI 賦能研發與營運</h4>
             <p class="text-slate-600 text-sm leading-relaxed mb-4">
-              完成勞動部 400 小時「Agentic AI 應用開發與部署」實體專班，精通以 ChatGPT 協同撰寫 Google Apps Script 串接 Gmail 與 Drive，將繁瑣行政稽核完全自動化，實現零失誤管理。
+              我不只使用 AI 工具，更具備設計與部署 AI 自動化流程的能力。結合生醫專業背景與 400 小時系統化程式與 AI 代理訓練，將繁瑣的法規文獻檢索、實驗數據清洗與團隊行政管考轉化為低失誤的數位自動化管線。
             </p>
             <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-3">
               <li class="flex items-start gap-1.5">
                 <i class="fa-solid fa-check text-sky-700 mt-0.5"></i>
-                <span>開發週報自動歸檔與時間戳記防呆系統</span>
+                <span>多代理 (Multi-Agent) 與 RAG 知識檢索系統規劃</span>
               </li>
               <li class="flex items-start gap-1.5">
                 <i class="fa-solid fa-check text-sky-700 mt-0.5"></i>
-                <span>掌握 Python & Pandas 數據處理與 ML 邏輯</span>
+                <span>無程式碼 / 低程式碼雲端工作流建置，釋放團隊產能</span>
               </li>
             </ul>
           </div>
@@ -303,19 +317,19 @@
     </section>
 
     <!-- ========================================================================
-         區塊 4：核心技能矩陣 (Skills Section)
-         包含：四大專業矩陣 (專案營運、醫材法規、AI自動化、分子生物技術)
+         區塊 4：核心技能矩陣與工具棧 (Skills & Tech Stack Section)
+         包含：四大專業職能模組 + PM 與數位開發工具棧
          ======================================================================== -->
     <section id="skills" class="py-20 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- 區塊標題 -->
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-xs uppercase tracking-widest text-emerald-700 font-bold mb-2">Competencies Matrix</h2>
-          <h3 class="text-3xl font-bold text-slate-800 tracking-tight">核心專長與專業技能</h3>
+          <h2 class="text-xs uppercase tracking-widest text-emerald-700 font-bold mb-2">Competencies & Toolstack</h2>
+          <h3 class="text-3xl font-bold text-slate-800 tracking-tight">核心職能矩陣與工具棧</h3>
           <div class="w-16 h-1 bg-gradient-to-r from-emerald-600 to-teal-500 mx-auto mt-4 rounded-full"></div>
           <p class="text-slate-600 mt-4 text-sm sm:text-base">
-            結合嚴謹生物科學實驗基礎、醫療器材法規框架、專案營運管銷與現代化 AI 數據工具。
+            整合專案管理、醫療器材法規、AI 軟體工程與分子生物學四大維度，具備快速跨界對接能力。
           </p>
         </div>
 
@@ -323,128 +337,175 @@
           
           <!-- 技能分類 1：專案管理與商業化 -->
           <div class="soft-card p-6 sm:p-8">
-            <div class="flex items-center gap-3 mb-6">
+            <div class="flex items-center gap-3 mb-5">
               <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-lg">
                 <i class="fa-solid fa-diagram-project"></i>
               </div>
               <div>
-                <h4 class="text-lg font-bold text-slate-800">專案管理與商業化營運</h4>
-                <p class="text-xs text-slate-500 font-medium">Project Management & Commercialization</p>
+                <h4 class="text-lg font-bold text-slate-800">產品規劃與研發專案管理</h4>
+                <p class="text-xs text-slate-500 font-medium">Product Management & R&D Operations</p>
               </div>
             </div>
-            <ul class="space-y-3.5 text-sm text-slate-600">
+            <ul class="space-y-3 text-sm text-slate-600 mb-5">
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-emerald-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">SBIR 國家計畫主持與執行：</strong>具備全案申請、管考、跨部門協調、經費核銷至結案報告之完整全週期經驗（累計獲補助 146 萬）。</span>
+                <span><strong class="text-slate-800">政府科專計畫管考：</strong>SBIR 計畫書撰寫、預算編列、WBS 工作拆解、期中/期末簡報答辯與經費核銷。</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-emerald-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">產學醫跨界資源整合：</strong>統籌輔仁大學、台北榮總、聖保祿醫院合作，主導臨床檢體分析與 IRB 送審。</span>
+                <span><strong class="text-slate-800">產品商業分析：</strong>醫療器材競品技術與專利地圖分析、目標市場准入評估、商業模式轉型規劃。</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-emerald-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">供應鏈管控與成本優化：</strong>落實原物料採購多方比價降低 10% 成本；處理國際進出口與複雜報關爭議。</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i class="fa-solid fa-circle-check text-emerald-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">商業模式轉型評估：</strong>進行競品專利與技術門檻分析，輔助管理層擬定「儀器+試劑」市場進入策略。</span>
+                <span><strong class="text-slate-800">供應鏈與生管控管：</strong>BOM 表成本分析、供應商詢比議價機制、關鍵零組件 EOL 替代方案與進出口報關協調。</span>
               </li>
             </ul>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+              <span class="text-xs px-2.5 py-1 rounded-md badge-sage font-medium">SBIR 專案主持</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-sage font-medium">WBS / 甘特圖排程</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-sage font-medium">競品與市場分析</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-sage font-medium">供應鏈降本管理</span>
+            </div>
           </div>
 
           <!-- 技能分類 2：法規認證與品質系統 -->
           <div class="soft-card p-6 sm:p-8">
-            <div class="flex items-center gap-3 mb-6">
+            <div class="flex items-center gap-3 mb-5">
               <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center text-lg">
                 <i class="fa-solid fa-certificate"></i>
               </div>
               <div>
-                <h4 class="text-lg font-bold text-slate-800">法規認證與醫療器材品質系統</h4>
-                <p class="text-xs text-slate-500 font-medium">Regulatory Affairs & Quality Assurance</p>
+                <h4 class="text-lg font-bold text-slate-800">醫材法規認證與品質系統</h4>
+                <p class="text-xs text-slate-500 font-medium">Regulatory Affairs (RA) & Quality Assurance (QA)</p>
               </div>
             </div>
-            <ul class="space-y-3.5 text-sm text-slate-600">
+            <ul class="space-y-3 text-sm text-slate-600 mb-5">
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-teal-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">ISO 13485 / ISO 14971：</strong>醫療器材品質管理系統維護、風險管理報告編撰、設計變更（Engineering Change）與通過第三方外部稽核。</span>
+                <span><strong class="text-slate-800">醫療器材品質與風險管理：</strong>ISO 13485 品質系統文件維護、ISO 14971 風險分析報告編撰、工程變更 (ECN) 與外部稽核應對。</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-teal-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">EN 13612 體外診斷確效：</strong>落實原型機體外診斷儀器確效規範，驗證光學線性度指標（R² > 0.99）。</span>
+                <span><strong class="text-slate-800">體外診斷 (IVD) 系統確效：</strong>EN 13612 性能評估規範、光學檢測模組線性度、精密度與偵測極限驗證。</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-teal-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">衛福部健康食品查驗登記：</strong>主導健字號申覆技術文件與法規論證，成功取得<strong>衛部健食字第 A00445 號</strong>認證。</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i class="fa-solid fa-circle-check text-teal-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">臨床倫理與合規：</strong>人體試驗委員會 (IRB) 計畫書撰寫、送審及檢體受試追蹤管考。</span>
+                <span><strong class="text-slate-800">臨床倫理與國際法規評估：</strong>醫院人體試驗委員會 (IRB) 臨床試驗送審管考、跨國潛在市場准入法規與競品壁壘分析。</span>
               </li>
             </ul>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+              <span class="text-xs px-2.5 py-1 rounded-md badge-teal font-medium">ISO 13485</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-teal font-medium">ISO 14971</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-teal font-medium">EN 13612 (IVD)</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-teal font-medium">國際法規壁壘評估</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-teal font-medium">IRB 臨床送審</span>
+            </div>
           </div>
 
           <!-- 技能分類 3：數位自動化與 AI 應用 -->
           <div class="soft-card p-6 sm:p-8">
-            <div class="flex items-center gap-3 mb-6">
+            <div class="flex items-center gap-3 mb-5">
               <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center text-lg">
                 <i class="fa-solid fa-microchip"></i>
               </div>
               <div>
-                <h4 class="text-lg font-bold text-slate-800">數位自動化與 AI 應用工程</h4>
-                <p class="text-xs text-slate-500 font-medium">Agentic AI & Digital Workflows</p>
+                <h4 class="text-lg font-bold text-slate-800">Agentic AI 與數據自動化工程</h4>
+                <p class="text-xs text-slate-500 font-medium">Agentic AI, Data Science & Workflow Automation</p>
               </div>
             </div>
-            <ul class="space-y-3.5 text-sm text-slate-600">
+            <ul class="space-y-3 text-sm text-slate-600 mb-5">
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-sky-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">AI 自動化工作流：</strong>熟練 Prompt Engineering 與 Google Apps Script (GAS)，串接 Gmail/Google Drive 打造自動歸檔與稽核系統。</span>
+                <span><strong class="text-slate-800">Agentic AI 應用開發：</strong>大型語言模型 Prompt Engineering、檢索增強生成 (RAG) 概念、自動化文獻與法規情報檢索代理設計。</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-sky-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">數據分析概念：</strong>勞動部 400 小時實體培訓結業，掌握 Python、Pandas 數據清洗與統計機器學習底層架構。</span>
+                <span><strong class="text-slate-800">Python 數據處理與機器學習：</strong>運用 Pandas 進行實驗與商業數據清洗、特徵工程、探索性資料分析 (EDA) 與基礎統計機器學習建模。</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-sky-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">文獻與情報檢索：</strong>運用大型語言模型加速專利掃描、競品技術審查與跨領域文獻統整。</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i class="fa-solid fa-circle-check text-sky-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">辦公與統計工具：</strong>MS Office (Excel 高級函數/樞紐分析、Word 規範文件、PowerPoint 提案報告)。</span>
+                <span><strong class="text-slate-800">雲端辦公流程自動化：</strong>Google Apps Script (GAS) 串接 Gmail / Drive / Sheets API，打造主動式防呆稽核與自動歸檔管線。</span>
               </li>
             </ul>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+              <span class="text-xs px-2.5 py-1 rounded-md bg-sky-50 text-sky-800 border border-sky-200 font-medium">Agentic AI / LLM</span>
+              <span class="text-xs px-2.5 py-1 rounded-md bg-sky-50 text-sky-800 border border-sky-200 font-medium">Python & Pandas</span>
+              <span class="text-xs px-2.5 py-1 rounded-md bg-sky-50 text-sky-800 border border-sky-200 font-medium">Statistical ML</span>
+              <span class="text-xs px-2.5 py-1 rounded-md bg-sky-50 text-sky-800 border border-sky-200 font-medium">Google Apps Script</span>
+            </div>
           </div>
 
           <!-- 技能分類 4：分子生物與實驗營運 -->
           <div class="soft-card p-6 sm:p-8">
-            <div class="flex items-center gap-3 mb-6">
+            <div class="flex items-center gap-3 mb-5">
               <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-lg">
                 <i class="fa-solid fa-dna"></i>
               </div>
               <div>
                 <h4 class="text-lg font-bold text-slate-800">分子生物技術與實驗室營運</h4>
-                <p class="text-xs text-slate-500 font-medium">Biotechnology & Laboratory Operations</p>
+                <p class="text-xs text-slate-500 font-medium">Molecular Biology & Assay Development</p>
               </div>
             </div>
-            <ul class="space-y-3.5 text-sm text-slate-600">
+            <ul class="space-y-3 text-sm text-slate-600 mb-5">
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-amber-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">分子生物學核心：</strong>PCR、RT-qPCR (SYBR Green / TaqMan)、Western Blotting、ELISA、膠體電泳分析。</span>
+                <span><strong class="text-slate-800">分子診斷與試劑開發：</strong>PCR、RT-qPCR (SYBR Green / TaqMan)、恆溫核酸擴增檢測、miRNA 生物標記定量分析。</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-amber-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">細胞與基因工程：</strong>CRISPR/Cas9 基因編輯、質體設計 (Plasmid Design)、慢病毒包裝、DNA Fiber Assay。</span>
+                <span><strong class="text-slate-800">細胞與基因工程平台：</strong>Western Blotting、ELISA、CRISPR/Cas9 基因編輯、質體構築、慢病毒包裝與 DNA Fiber Assay。</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-circle-check text-amber-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">生安與臨床檢體：</strong>P2 級生物安全實驗室規範操作、臨床檢體（血液/血清）萃取與 QC 標準建立。</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i class="fa-solid fa-circle-check text-amber-600 text-xs mt-1"></i>
-                <span><strong class="text-slate-800">動物實驗技能：</strong>動物保定、皮下注射及器官採樣標準技術。</span>
+                <span><strong class="text-slate-800">實驗室標準化與品管：</strong>P2 生物安全實驗室建置、臨床血液/血清檢體前處理 SOP 制定、試劑再現性 (Reproducibility) 優化。</span>
               </li>
             </ul>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100">
+              <span class="text-xs px-2.5 py-1 rounded-md badge-warm font-medium">RT-qPCR / IVD試劑</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-warm font-medium">CRISPR / 基因工程</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-warm font-medium">Western Blot / ELISA</span>
+              <span class="text-xs px-2.5 py-1 rounded-md badge-warm font-medium">P2 實驗室與 SOP</span>
+            </div>
           </div>
 
+        </div>
+
+        <!-- 新增：PM 與跨領域實戰工具棧 (Tools & Workflows Banner) -->
+        <div class="mt-8 soft-card p-6 sm:p-8 bg-slate-50/60">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-200/80">
+            <div>
+              <h4 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                <i class="fa-solid fa-toolbox text-emerald-700"></i> 專案管理與跨領域實戰工具棧 (PM & Technical Toolstack)
+              </h4>
+              <p class="text-xs text-slate-500 mt-1">日常用於專案排程、法規文件控管、AI 開發與科學統計之核心工具</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-5 text-xs">
+            <div>
+              <div class="font-bold text-slate-700 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-list-check text-emerald-600"></i> 專案與協作管理
+              </div>
+              <p class="text-slate-600 leading-relaxed">甘特圖排程 (Gantt / WBS)、跨部門查核點管考、Notion、Git / GitHub、Google Workspace、Excel 樞紐與財務核銷模型</p>
+            </div>
+            <div>
+              <div class="font-bold text-slate-700 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-file-shield text-teal-600"></i> 法規與品質文件
+              </div>
+              <p class="text-slate-600 leading-relaxed">DHF 設計歷史檔案、ISO 14971 風險管理卷宗、ECN 工程變更單、SOP 標準作業程序書、IRB 臨床試驗計畫書</p>
+            </div>
+            <div>
+              <div class="font-bold text-slate-700 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-terminal text-sky-600"></i> AI 與程式開發
+              </div>
+              <p class="text-slate-600 leading-relaxed">Python、Pandas、Scikit-learn、Agentic AI 工作流、LLM Prompt Engineering、Google Apps Script (GAS)</p>
+            </div>
+            <div>
+              <div class="font-bold text-slate-700 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-flask-vial text-amber-600"></i> 生醫分析與檢索
+              </div>
+              <p class="text-slate-600 leading-relaxed">qPCR 定量分析軟體、光學線性度迴歸分析、NCBI / PubMed 生物資訊庫、全球醫療器材法規與專利資料庫檢索</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -452,7 +513,7 @@
 
     <!-- ========================================================================
          區塊 5：工作歷程時間軸 (Work Experience)
-         包含：伊勒伯科技 (Winnoz) 與 澤生生技 的完整職責與成果細節
+         包含：2026 勞動部 AI 專班進修、伊勒伯科技 (Winnoz) 與 澤生生技 完整職涯時間軸
          ======================================================================== -->
     <section id="experience" class="py-20 bg-slate-50/70 border-t border-slate-200/80">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -463,12 +524,35 @@
           <h3 class="text-3xl font-bold text-slate-800 tracking-tight">工作經歷與職涯實績</h3>
           <div class="w-16 h-1 bg-gradient-to-r from-emerald-600 to-teal-500 mx-auto mt-4 rounded-full"></div>
           <p class="text-slate-600 mt-4 text-sm sm:text-base">
-            累計 3~4 年生化科技研發業專業資歷，專注於生醫儀器、試劑開發與跨部門專案落地。
+            4 年生技醫材與試劑研發管理資歷，並於 2026 年完成 400 小時 Agentic AI 密集工程實訓，具備完整的技術整合視野。
           </p>
         </div>
 
         <!-- 時間軸主容器 -->
         <div class="relative timeline-stem ml-4 sm:ml-8 space-y-12">
+
+          <!-- 近期進修節點：勞動部 Agentic AI 專班 (銜接 2026/06 - 2026/09 時間軸) -->
+          <div class="relative pl-6 sm:pl-10 group">
+            <div class="absolute -left-[7px] top-2 timeline-node" style="background-color: #0284c7;"></div>
+            
+            <div class="soft-card p-6 sm:p-7 border-l-4 border-l-sky-600 bg-gradient-to-r from-sky-50/40 to-white">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                <div>
+                  <span class="inline-block px-3 py-0.5 rounded-full text-xs font-semibold bg-sky-100 text-sky-800 border border-sky-200 mb-2">
+                    數位轉型與 AI 工程密集進修 (400 小時)
+                  </span>
+                  <h4 class="text-lg sm:text-xl font-bold text-slate-800">Agentic AI 應用開發與部署就業班 · 結業</h4>
+                  <div class="text-sm font-semibold text-slate-600">勞動部勞動力發展署跨領域專業培訓</div>
+                </div>
+                <div class="text-xs sm:text-sm font-semibold text-sky-800 bg-sky-50 px-3 py-1.5 rounded-xl border border-sky-200 self-start sm:self-auto">
+                  2026/06 – 2026/09 · 4個月全職實訓
+                </div>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                為強化生醫研發與產品管理的數位賦能實力，投入 400 小時全職實作訓練。系統化掌握 <strong class="text-slate-800">Python 程式開發、Pandas 數據清洗與探索性分析、統計機器學習模型</strong>，以及 <strong class="text-slate-800">Agentic AI 多代理工作流設計與部署</strong>，將過去在醫材法規審查、文獻檢索與專案管考的產業痛點轉化為自動化軟體解決方案。
+              </p>
+            </div>
+          </div>
           
           <!-- 經歷 1：伊勒伯科技 -->
           <div class="relative pl-6 sm:pl-10 group">
@@ -499,7 +583,7 @@
                 </div>
                 <div>
                   <strong class="text-emerald-800 font-bold">♦ 經濟部 SBIR 計畫執行與危機處理：</strong>
-                  統籌跨部門資源，於關鍵零件面臨停產（EOL）與 PCB 電路改版期間迅速動態調整排程；成功驗證光學模組關鍵規格（雙通道線性度 R² > 0.99）並符合 EN 13612 體外診斷確效規範，達成 100% 查核點如期驗收。
+                  統籌跨部門資源，於關鍵零件面臨停產（EOL）與 PCB 電路改版期間迅速動態調整排程；成功驗證光學模組關鍵規格（雙通道線性度 R² &gt; 0.99）並符合 EN 13612 體外診斷確效規範，達成 100% 查核點如期驗收。
                 </div>
                 <div>
                   <strong class="text-emerald-800 font-bold">♦ ISO 13485 / ISO 14971 品質系統維護：</strong>
@@ -562,18 +646,14 @@
                   <strong class="text-teal-700 font-bold">♦ 供應鏈比價降本與進出口危機處理：</strong>
                   建立原物料採購比價機制，成功為公司降低 10% 採購成本；面對進口中藥材「藥食同源」嚴苛報關法規，主動協調各部會論證法條，化解海關扣留風險，確保量產零延遲。
                 </div>
-                <div>
-                  <strong class="text-teal-700 font-bold">♦ 衛福部健字號認證取得：</strong>
-                  主導健康食品查驗登記申覆作業，以嚴謹科學實證及法規邏輯申覆答辯，成功取得衛福部健康食品字號（<strong class="text-slate-800">衛部健食字第 A00445 號</strong>）。
-                </div>
               </div>
 
               <!-- 標籤雲 -->
               <div class="mt-5 flex flex-wrap gap-2 pt-4 border-t border-slate-100">
                 <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-medium">#計畫主持人</span>
-                <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-medium">#健字號認證</span>
                 <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-medium">#臨床試驗IRB</span>
                 <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-medium">#RT-qPCR</span>
+                <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-medium">#分子診斷試劑</span>
                 <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-medium">#供應鏈管理</span>
                 <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-medium">#降低10%成本</span>
               </div>
@@ -587,27 +667,27 @@
 
     <!-- ========================================================================
          區塊 6：專案實績展示 (Projects & Achievements)
-         包含：分類篩選切換、5項精選專案卡片與詳細資訊彈跳對話盒
+         包含：分類篩選切換、5項精選專案卡片（外層精簡聚焦 Hook，點擊 Modal 查看 STAR 細節與架構圖）
          ======================================================================== -->
     <section id="projects" class="py-20 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- 區塊標題 -->
         <div class="text-center max-w-3xl mx-auto mb-12">
-          <h2 class="text-xs uppercase tracking-widest text-emerald-700 font-bold mb-2">Portfolio & Highlights</h2>
-          <h3 class="text-3xl font-bold text-slate-800 tracking-tight">專案成就與研究發表</h3>
+          <h2 class="text-xs uppercase tracking-widest text-emerald-700 font-bold mb-2">Portfolio & Case Studies</h2>
+          <h3 class="text-3xl font-bold text-slate-800 tracking-tight">代表專案與研究實績</h3>
           <div class="w-16 h-1 bg-gradient-to-r from-emerald-600 to-teal-500 mx-auto mt-4 rounded-full"></div>
           <p class="text-slate-600 mt-4 text-sm sm:text-base">
-            包含兩項經濟部 SBIR 國家創新計畫、自動化流程系統、衛福部健字號認證與國際權威 SCI 期刊論文。
+            點擊各專案卡片下方按鈕，可檢視完整 <strong class="text-slate-700">STAR 執行脈絡（背景挑戰、核心行動、量化成果）與系統流程架構圖</strong>。
           </p>
         </div>
 
         <!-- 專案分類篩選按鈕列 -->
-        <div class="flex flex-wrap items-center justify-center gap-2.5 mb-12">
+        <div class="flex flex-wrap items-center justify-center gap-2.5 mb-12 no-print">
           <button onclick="filterProjects('all')" class="filter-btn active" data-filter="all">全部實績 (5)</button>
-          <button onclick="filterProjects('sbir')" class="filter-btn" data-filter="sbir">SBIR 國家專案</button>
-          <button onclick="filterProjects('ai')" class="filter-btn" data-filter="ai">AI & 自動化工作流</button>
-          <button onclick="filterProjects('publication')" class="filter-btn" data-filter="publication">論文與認證</button>
+          <button onclick="filterProjects('sbir')" class="filter-btn" data-filter="sbir">SBIR 國家專案 (2)</button>
+          <button onclick="filterProjects('ai')" class="filter-btn" data-filter="ai">AI & 自動化工作流 (2)</button>
+          <button onclick="filterProjects('publication')" class="filter-btn" data-filter="publication">國際期刊論文 (1)</button>
         </div>
 
         <!-- 專案卡片網格清單 -->
@@ -621,19 +701,19 @@
                 <span>2024/12 – 2025/08</span>
               </div>
               <h4 class="text-lg font-bold text-slate-800 mb-2 leading-snug">恆溫核酸檢測儀開發計畫</h4>
-              <p class="text-xs text-teal-700 font-semibold mb-3">職位：計畫聯絡人 / 核心研發成員</p>
+              <p class="text-xs text-teal-700 font-semibold mb-3">角色：計畫聯絡人 / 核心研發成員</p>
               <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                主導研發時程與供應鏈風險控管，在面對核心零件停產 (EOL) 危機與 PCB 改版時靈活應變。確立「單光源雙通道」光學架構，確效線性度達到 R² > 0.99，符合 EN 13612 體外診斷法規要求，100% 達成所有查核點。
+                化解關鍵零組件停產 (EOL) 與 PCB 改版排程危機，確立「單光源雙通道」光學架構（線性度 R² &gt; 0.99），通過 EN 13612 體外診斷確效並 100% 達成查核點驗收。
               </p>
             </div>
             <div class="pt-4 border-t border-slate-100">
               <div class="flex flex-wrap gap-1.5 text-xs text-slate-600 mb-3">
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">EN 13612</span>
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">光學模組</span>
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">風險控管</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">EN 13612 確效</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">雙通道光學</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">跨部門危機控管</span>
               </div>
               <button onclick="openModal('sbir-winnoz')" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5">
-                查看專案細節 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                查看 STAR 細節與架構圖 <i class="fa-solid fa-arrow-right text-[10px]"></i>
               </button>
             </div>
           </div>
@@ -646,95 +726,100 @@
                 <span>2022/11 – 2023/06</span>
               </div>
               <h4 class="text-lg font-bold text-slate-800 mb-2 leading-snug">miRNA 癌症診斷套組開發計畫</h4>
-              <p class="text-xs text-emerald-700 font-semibold mb-3">職位：計畫主持人 / 核心研發成員</p>
+              <p class="text-xs text-emerald-700 font-semibold mb-3">角色：計畫主持人 / 核心研發成員</p>
               <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                領導開發肝癌 miRNA 輔助診斷試劑，建立從檢體萃取至 RT-qPCR 完整 SOP 與 QC 指標。統籌輔大、北榮與聖保祿產學醫合作，分析 70+ 例檢體，以「新鮮檢體」對策突破專一性瓶頸，並成功將效益擴展至胰臟癌預後監控。
+                臨危受命接手進度落後專案，統籌輔大、北榮與聖保祿三方 IRB 臨床試驗（70+ 例檢體），以「新鮮檢體」QC 策略突破專一性瓶頸，逆轉局勢獲全額補助。
               </p>
             </div>
             <div class="pt-4 border-t border-slate-100">
               <div class="flex flex-wrap gap-1.5 text-xs text-slate-600 mb-3">
                 <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">計畫主持人</span>
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">RT-qPCR</span>
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">臨床試驗 70+</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">RT-qPCR SOP</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">多中心臨床 70+</span>
               </div>
               <button onclick="openModal('sbir-zesheng')" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5">
-                查看專案細節 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                查看 STAR 細節與流程圖 <i class="fa-solid fa-arrow-right text-[10px]"></i>
               </button>
             </div>
           </div>
 
-          <!-- 專案卡 3：AI 週報自動備份與防呆 -->
+          <!-- 專案卡 3 (新增)：勞動部 400hr Agentic AI 專班實戰專案 -->
           <div class="project-card soft-card p-6 flex flex-col justify-between" data-category="ai">
             <div>
               <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-                <span class="px-2.5 py-1 rounded-md badge-teal font-semibold">AI 流程工程</span>
+                <span class="px-2.5 py-1 rounded-md bg-sky-50 text-sky-800 border border-sky-200 font-semibold">Agentic AI 專班實作</span>
+                <span>2026/06 – 2026/09</span>
+              </div>
+              <h4 class="text-lg font-bold text-slate-800 mb-2 leading-snug">生醫法規與臨床數據 AI 智慧分析管線</h4>
+              <p class="text-xs text-sky-700 font-semibold mb-3">角色：Python 資料工程與 AI 代理流程設計</p>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                結合 400 小時專班所學之 Python、Pandas、統計機器學習與 Agentic AI 架構，建置針對生醫實驗數據清洗、競品法規比對與文獻自動結構化摘要之智慧分析流程。
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100">
+              <div class="flex flex-wrap gap-1.5 text-xs text-slate-600 mb-3">
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">Agentic AI</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">Python & Pandas</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">Machine Learning</span>
+              </div>
+              <button onclick="openModal('agentic-ai-biomed')" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5">
+                查看系統架構與實作亮點 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 專案卡 4：AI 週報自動備份與防呆 -->
+          <div class="project-card soft-card p-6 flex flex-col justify-between" data-category="ai">
+            <div>
+              <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
+                <span class="px-2.5 py-1 rounded-md badge-teal font-semibold">AI 流程自動化</span>
                 <span>2025/02 – 2025/03</span>
               </div>
-              <h4 class="text-lg font-bold text-slate-800 mb-2 leading-snug">週報自動備份及防呆檢查系統</h4>
-              <p class="text-xs text-teal-700 font-semibold mb-3">開發角色：獨立架構設計與 GAS 實作</p>
+              <h4 class="text-lg font-bold text-slate-800 mb-2 leading-snug">週報自動備份及防呆稽核系統</h4>
+              <p class="text-xs text-teal-700 font-semibold mb-3">角色：獨立架構設計與 GAS 腳本實作</p>
               <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                運用 ChatGPT 協同撰寫 Google Apps Script 串接 Gmail 與 Google Drive API。建置主動關鍵字篩選及自動轉存機制，並設計檔案更新時間戳記監控，完全消除團隊手動上傳與每週 30 分鐘的人工逐項檢查，實現管理零疏漏。
+                以 LLM 協同開發 Google Apps Script 串接 Gmail 與 Drive API，自動解析信件附件歸檔並校驗檔案時間戳記，消除每週 30 分鐘人工逐項檢查，達成管理零疏漏。
               </p>
             </div>
             <div class="pt-4 border-t border-slate-100">
               <div class="flex flex-wrap gap-1.5 text-xs text-slate-600 mb-3">
                 <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">Google Apps Script</span>
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">Gmail API</span>
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">LLM Prompting</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">Workspace API</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">防呆自動化</span>
               </div>
               <button onclick="openModal('ai-workflow')" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5">
-                查看技術架構 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                查看自動化架構圖 <i class="fa-solid fa-arrow-right text-[10px]"></i>
               </button>
             </div>
           </div>
 
-          <!-- 專案卡 4：PLoS Genetics 論文 -->
+          <!-- 專案卡 5：PLoS Genetics 論文 -->
           <div class="project-card soft-card p-6 flex flex-col justify-between" data-category="publication">
             <div>
               <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
                 <span class="px-2.5 py-1 rounded-md badge-sage font-semibold">國際權威期刊 (SCI)</span>
-                <span>Impact Factor: 6.020</span>
+                <span>Impact Factor: 6.02</span>
               </div>
-              <h4 class="text-lg font-bold text-slate-800 mb-2 leading-snug">PLoS Genetics 期刊論文發表</h4>
+              <h4 class="text-lg font-bold text-slate-800 mb-2 leading-snug">PLoS Genetics 國際期刊論文發表</h4>
               <p class="text-xs text-slate-500 italic mb-3 font-medium">"PARP1 recruits DNA translocases to restrain DNA replication and facilitate DNA repair"</p>
               <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                成功大學生科所碩士期間核心學術成就。深入探討 PARP1 蛋白如何在 DNA 複製壓力下募集轉位酶以維持基因體穩定性並促進修復機制，展示深厚的分子生物學基礎與高精度實驗數據邏輯。
+                探討 PARP1 蛋白於 DNA 複製壓力下募集轉位酶（HLTF / SHPRH）調控複製叉逆轉與修復之分子機轉，展現高精密度單分子實驗與數據統計論證實力。
               </p>
             </div>
             <div class="pt-4 border-t border-slate-100">
               <div class="flex flex-wrap gap-1.5 text-xs text-slate-600 mb-3">
                 <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">DNA Repair</span>
                 <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">DNA Fiber Assay</span>
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">Peer-Reviewed</span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">SCI IF 6.02</span>
               </div>
-              <a href="https://journals.plos.org/plosgenetics/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5">
-                期刊平台預覽 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- 專案卡 5：衛福部健字號認證 -->
-          <div class="project-card soft-card p-6 flex flex-col justify-between" data-category="publication">
-            <div>
-              <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-                <span class="px-2.5 py-1 rounded-md badge-warm font-semibold">法規認證成果</span>
-                <span>衛福部核可</span>
+              <div class="flex items-center justify-between">
+                <button onclick="openModal('plos-genetics')" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5">
+                  查看研究重點 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+                <a href="https://doi.org/10.1371/journal.pgen.1008596" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-slate-500 hover:text-teal-700 flex items-center gap-1" title="前往 PLoS Genetics 閱讀論文全文 (DOI)">
+                  DOI 全文 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
               </div>
-              <h4 class="text-lg font-bold text-slate-800 mb-2 leading-snug">健康食品查驗登記與健字號取得</h4>
-              <p class="text-xs text-amber-700 font-semibold mb-3">證號：衛部健食字第 A00445 號</p>
-              <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                全程主導健康食品查驗登記技術文件整備與申覆答辯作業。以嚴謹毒理、功能性試驗數據與法規論述克服審查委員質疑，成功取得國家級健康食品認證字號，為產品建立強固的法規護城河與市場行銷利基。
-              </p>
-            </div>
-            <div class="pt-4 border-t border-slate-100">
-              <div class="flex flex-wrap gap-1.5 text-xs text-slate-600 mb-3">
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">健字號認證</span>
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">衛福部申覆</span>
-                <span class="bg-slate-100 px-2 py-0.5 rounded font-medium">法規事務(RA)</span>
-              </div>
-              <button onclick="openModal('health-food')" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5">
-                查看認證亮點 <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </button>
             </div>
           </div>
 
@@ -745,21 +830,43 @@
 
     <!-- ========================================================================
          區塊 7：學歷背景與專業培訓 (Education & Credentials)
-         包含：成功大學碩士、臺南大學學士、勞動部 400hr 專業專班與語言條件
+         包含：臺南大學學士、成功大學碩士、勞動部 400hr 專業專班 (2026/06–2026/09) 與專業資格
          ======================================================================== -->
     <section id="education" class="py-20 bg-slate-50/70 border-t border-slate-200/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- 區塊標題 -->
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-xs uppercase tracking-widest text-emerald-700 font-bold mb-2">Academic & Training</h2>
+          <h2 class="text-xs uppercase tracking-widest text-emerald-700 font-bold mb-2">Academic & Professional Training</h2>
           <h3 class="text-3xl font-bold text-slate-800 tracking-tight">學歷背景與專業培訓</h3>
           <div class="w-16 h-1 bg-gradient-to-r from-emerald-600 to-teal-500 mx-auto mt-4 rounded-full"></div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           
-          <!-- 學歷卡 1：成功大學 碩士 -->
+          <!-- 學歷卡 1：臺南大學 學士 -->
+          <div class="soft-card p-6 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-center p-2 group-hover:scale-105 group-hover:border-teal-300 transition-all">
+                  <img src="images/nutn-logo.svg" alt="國立臺南大學校徽" title="國立臺南大學校徽" class="w-full h-full object-contain" loading="lazy">
+                </div>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-800 border border-teal-200/60">
+                  2014/09 – 2018/06
+                </span>
+              </div>
+              <h4 class="text-lg font-bold text-slate-800">國立臺南大學</h4>
+              <p class="text-sm font-semibold text-teal-700">生物科技學系 學士畢業</p>
+              <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                奠定微生物學、生物化學、基因重組與細胞工程核心基礎，培養跨領域生物科技整合思維與實驗室安全操作規範。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+              <i class="fa-solid fa-check text-teal-600 mr-1"></i> 生物科技學程完整考核
+            </div>
+          </div>
+
+          <!-- 學歷卡 2：成功大學 碩士 -->
           <div class="soft-card p-6 flex flex-col justify-between group">
             <div>
               <div class="flex items-start justify-between gap-3 mb-4">
@@ -773,37 +880,15 @@
               <h4 class="text-lg font-bold text-slate-800">國立成功大學</h4>
               <p class="text-sm font-semibold text-emerald-700">生命科學系 碩士畢業</p>
               <p class="text-xs text-slate-600 mt-3 leading-relaxed">
-                專攻分子生物學與 DNA 複製修復機制，培養紮實實驗設計、數據統計與科學文獻批判能力。碩士研究成果發表於 PLoS Genetics (IF 6.02)。
+                專攻分子生物學與 DNA 複製修復機制，培養嚴謹實驗設計、生物統計與英文科學文獻批判能力。碩士研究成果發表於國際頂尖期刊 PLoS Genetics (IF 6.02)。
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
-              <i class="fa-solid fa-award text-amber-600 mr-1"></i> SCI 國際頂級期刊發表
+              <i class="fa-solid fa-award text-amber-600 mr-1"></i> SCI 國際頂尖期刊發表
             </div>
           </div>
 
-          <!-- 學歷卡 2：臺南大學 學士 -->
-          <div class="soft-card p-6 flex flex-col justify-between group">
-            <div>
-              <div class="flex items-start justify-between gap-3 mb-4">
-                <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-center p-2 group-hover:scale-105 group-hover:border-teal-300 transition-all">
-                  <img src="images/nutn-logo.svg" alt="國立臺南大學校徽" title="國立臺南大學校徽" class="w-full h-full object-contain" loading="lazy">
-                </div>
-                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-800 border border-teal-200/60">
-                  2014/09 – 2018/06
-                </span>
-              </div>
-              <h4 class="text-lg font-bold text-slate-800">國立臺南大學</h4>
-              <p class="text-sm font-semibold text-teal-700">生物科技學系 大學畢業</p>
-              <p class="text-xs text-slate-600 mt-3 leading-relaxed">
-                建立微生物學、生物化學、基因重組與細胞工程基礎，培養跨領域科技整合思維與實驗室安全操作規範。
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
-              <i class="fa-solid fa-check text-teal-600 mr-1"></i> 生物科技學程完整考核
-            </div>
-          </div>
-
-          <!-- 培訓卡 3：勞動部 Agentic AI 專班 -->
+          <!-- 培訓卡 3：勞動部 Agentic AI 專班 (2026/06 – 2026/09) -->
           <div class="soft-card p-6 flex flex-col justify-between group">
             <div>
               <div class="flex items-start justify-between gap-3 mb-4">
@@ -811,41 +896,52 @@
                   <img src="images/mol-logo.svg" alt="中華民國勞動部部徽" title="中華民國勞動部部徽" class="w-full h-full object-contain" loading="lazy">
                 </div>
                 <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-50 text-sky-800 border border-sky-200/60">
-                  400小時實體專業培訓
+                  2026/06 – 2026/09
                 </span>
               </div>
-              <h4 class="text-lg font-bold text-slate-800">勞動部跨領域專班</h4>
+              <h4 class="text-lg font-bold text-slate-800">勞動部跨領域專業培訓</h4>
               <p class="text-sm font-semibold text-sky-800">Agentic AI 應用開發與部署就業班</p>
               <p class="text-xs text-slate-600 mt-3 leading-relaxed">
-                密集培訓 Python 基礎程式開發、Pandas 數據前處理、統計機器學習與 Agentic AI 架構，具備以 AI 賦能生醫研發與自動化工作流之技術視野。
+                完成 400 小時全職密集實訓，深入掌握 Python 程式設計、Pandas 資料清洗與探索分析、統計機器學習建模，以及 Agentic AI 多代理系統開發與部署。
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
-              <i class="fa-solid fa-code text-sky-600 mr-1"></i> Python · Pandas · Agentic AI
+              <i class="fa-solid fa-code text-sky-600 mr-1"></i> 400小時結業 · Python · Pandas · Agentic AI
             </div>
           </div>
 
         </div>
 
-        <!-- 語言能力與個人偏好卡片 -->
-        <div class="mt-12 p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        <!-- 專業資格、語言能力與職涯定位卡片 (取代傳統年齡/兵役/駕照欄位) -->
+        <div class="mt-12 p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
           <div>
-            <h5 class="text-slate-800 font-bold mb-2 flex items-center gap-2">
-              <i class="fa-solid fa-language text-emerald-600"></i> 語言能力
+            <h5 class="text-slate-800 font-bold mb-2.5 flex items-center gap-2">
+              <i class="fa-solid fa-language text-emerald-600"></i> 語言與跨國溝通能力
             </h5>
-            <p class="text-xs text-slate-600 leading-relaxed">中文：精通 (母語)<br>英文：中等 (可進行專業文獻審閱與商業溝通)<br>台語：中等</p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              <strong class="text-slate-700">中文：</strong>精通（母語，擅長政府科專計畫書與法規文件撰寫）<br>
+              <strong class="text-slate-700">英文：</strong>專業工作應用（國際 SCI 文獻審閱、ISO / EN 法規標準解讀與商業書信溝通）<br>
+              <strong class="text-slate-700">台語：</strong>流利日常溝通
+            </p>
           </div>
           <div>
-            <h5 class="text-slate-800 font-bold mb-2 flex items-center gap-2">
-              <i class="fa-solid fa-id-card text-teal-600"></i> 個人條件與執照
+            <h5 class="text-slate-800 font-bold mb-2.5 flex items-center gap-2">
+              <i class="fa-solid fa-shield-halved text-teal-600"></i> 法規與實驗室實務資格
             </h5>
-            <p class="text-xs text-slate-600 leading-relaxed">免役 · 30歲<br>普通小型車駕照、普通重型機車駕照</p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              • <strong class="text-slate-700">醫材品質與風險：</strong>ISO 13485 系統維護 / ISO 14971 風險管理實務<br>
+              • <strong class="text-slate-700">臨床與診斷確效：</strong>IRB 人體試驗計畫送審 / EN 13612 體外診斷確效實務<br>
+              • <strong class="text-slate-700">實驗室安全規範：</strong>P2 級生物安全實驗室標準操作與臨床檢體 QC
+            </p>
           </div>
           <div>
-            <h5 class="text-slate-800 font-bold mb-2 flex items-center gap-2">
-              <i class="fa-solid fa-bullseye text-amber-600"></i> 職涯志向
+            <h5 class="text-slate-800 font-bold mb-2.5 flex items-center gap-2">
+              <i class="fa-solid fa-bullseye text-amber-600"></i> 職涯目標與工作型態
             </h5>
-            <p class="text-xs text-slate-600 leading-relaxed">期望職稱：生技專案經理 (PM)、產品經理、研發副研究員、醫材工程師<br>工作地點：台北市、新北市、支持遠端工作</p>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              <strong class="text-slate-700">目標職務：</strong>生技研發專案經理 (R&D PM)、產品經理 (PM)、醫療器材研發/法規工程師、AI 應用專案管理<br>
+              <strong class="text-slate-700">期望地點：</strong>台北市、新北市（支援遠端與混合辦公）
+            </p>
           </div>
         </div>
 
@@ -854,7 +950,7 @@
 
     <!-- ========================================================================
          區塊 8：聯絡洽談與互動表單 (Contact Section)
-         包含：聯絡資訊卡片、一鍵複製、社群連結與自動 Mailto 喚起表單
+         包含：聯絡資訊卡片、一鍵複製、學術/作品連結與雙模互動表單 (支援 Mailto 與一鍵複製信件)
          ======================================================================== -->
     <section id="contact" class="py-20 bg-white">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -865,7 +961,7 @@
           <h3 class="text-3xl font-bold text-slate-800 tracking-tight">歡迎聯絡洽談與合作</h3>
           <div class="w-16 h-1 bg-gradient-to-r from-emerald-600 to-teal-500 mx-auto mt-4 rounded-full"></div>
           <p class="text-slate-600 mt-4 text-sm sm:text-base">
-            無論是生技產品開發、SBIR 國家專案規劃、醫材法規輔導，或專案經理與研究員職缺洽談，誠摯歡迎來信交流。
+            無論是生技與醫材產品開發、SBIR 國家專案規劃、AI 自動化導入，或專案經理與研究員職缺面談，誠摯歡迎與我聯繫。
           </p>
         </div>
 
@@ -887,63 +983,68 @@
                   </a>
                 </div>
               </div>
-              <button onclick="copyEmail()" class="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-medium transition-all flex items-center gap-1.5 shadow-sm" title="複製 Email">
+              <button onclick="copyEmail()" class="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-medium transition-all flex items-center gap-1.5 shadow-sm no-print" title="複製 Email">
                 <i class="fa-regular fa-copy"></i> 複製
               </button>
             </div>
 
-            <!-- 通訊地址卡片 -->
+            <!-- 地區與到職狀態卡片 -->
             <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-sky-100/70 text-sky-700 flex items-center justify-center text-xl">
                 <i class="fa-solid fa-map-location-dot"></i>
               </div>
               <div>
-                <div class="text-xs text-slate-500 font-medium">通訊地址 Location</div>
+                <div class="text-xs text-slate-500 font-medium">所在地區與狀態 Location & Availability</div>
                 <div class="text-sm sm:text-base font-semibold text-slate-800">
-                  新北市中和區
+                  新北市中和區 · 雙北可親赴面談（隨時可到職）
                 </div>
               </div>
             </div>
 
-            <!-- 開源與社群連結卡片 -->
+            <!-- 學術發表與快速履歷匯出卡片 -->
             <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-              <div class="text-xs text-slate-500 font-medium mb-3">專業社群與開源平台</div>
-              <div class="flex gap-3">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm">
-                  <i class="fa-brands fa-github text-base text-slate-900"></i> GitHub Pages
+              <div class="text-xs text-slate-500 font-medium mb-3">學術實績連結與履歷存檔</div>
+              <div class="flex flex-wrap gap-2.5">
+                <a href="https://doi.org/10.1371/journal.pgen.1008596" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm">
+                  <i class="fa-solid fa-book-journal-whills text-emerald-700"></i> PLoS Genetics 論文全文
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm">
-                  <i class="fa-brands fa-linkedin text-base text-[#0a66c2]"></i> LinkedIn 檔案
-                </a>
+                <button onclick="printResume()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-teal-50 text-slate-700 hover:text-teal-800 border border-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-sm no-print">
+                  <i class="fa-solid fa-print text-teal-700"></i> 列印 / 儲存 PDF 履歷
+                </button>
               </div>
             </div>
 
           </div>
 
           <!-- 右側：即時發送信件互動表單 -->
-          <div class="soft-card p-6 sm:p-8">
-            <h4 class="text-lg font-bold text-slate-800 mb-2">發送即時留言</h4>
-            <p class="text-xs text-slate-500 mb-6">填寫以下欄位，系統將為您直接喚起郵件軟體發送給張瀚文：</p>
+          <div class="soft-card p-6 sm:p-8 no-print">
+            <h4 class="text-lg font-bold text-slate-800 mb-1">發送快速洽談訊息</h4>
+            <p class="text-xs text-slate-500 mb-5">填寫以下資訊，可直接喚起郵件軟體寄出，或一鍵複製排好版的信件內容（適合使用網頁版 Gmail 之招募人員）：</p>
 
             <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
               <div>
-                <label for="senderName" class="block text-xs font-semibold text-slate-700 mb-1">您的姓名 / 稱謂 *</label>
-                <input type="text" id="senderName" required placeholder="例如：林經理 / HR 王小姐" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
+                <label for="senderName" class="block text-xs font-semibold text-slate-700 mb-1">您的姓名 / 公司稱謂 *</label>
+                <input type="text" id="senderName" required placeholder="例如：XX生技 林經理 / HR 王小姐" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
               </div>
 
               <div>
                 <label for="senderSubject" class="block text-xs font-semibold text-slate-700 mb-1">洽談主旨 *</label>
-                <input type="text" id="senderSubject" required placeholder="例如：生技專案經理職缺面談邀請" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
+                <input type="text" id="senderSubject" required placeholder="例如：生技研發專案經理 (PM) 面談邀請" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors">
               </div>
 
               <div>
                 <label for="senderMessage" class="block text-xs font-semibold text-slate-700 mb-1">訊息內容 *</label>
-                <textarea id="senderMessage" rows="4" required placeholder="請簡要說明職缺細節或合作需求..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors"></textarea>
+                <textarea id="senderMessage" rows="4" required placeholder="請簡要說明職缺內容、面談時間或合作需求..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-600 transition-colors"></textarea>
               </div>
 
-              <button type="submit" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
-                <i class="fa-regular fa-paper-plane"></i> 寄送訊息 (產生 Email)
-              </button>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <button type="submit" class="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                  <i class="fa-regular fa-paper-plane"></i> 喚起郵件軟體寄出
+                </button>
+                <button type="button" onclick="copyFormattedMessage()" class="w-full py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-emerald-800 text-sm font-semibold transition-all flex items-center justify-center gap-2 border border-slate-200">
+                  <i class="fa-regular fa-copy"></i> 複製信件內容與信箱
+                </button>
+              </div>
             </form>
           </div>
 
@@ -962,10 +1063,10 @@
       <div class="flex items-center justify-center gap-2 text-sm text-slate-800 font-bold">
         <span>張瀚文 Han-Wen Chang</span>
         <span class="text-slate-300">|</span>
-        <span class="text-emerald-700 font-medium text-xs">Biotech R&D Project Manager</span>
+        <span class="text-emerald-700 font-medium text-xs">Biotech R&D PM & Product Manager</span>
       </div>
       <p class="max-w-md mx-auto text-slate-500">
-        專注於生物醫學研發、ISO 醫材法規確效、SBIR 計畫管理與 AI 自動化工作流。
+        專注於生物醫學研發、ISO 醫材法規確效、SBIR 國家專案管理與 Agentic AI 自動化工作流。
       </p>
       <div class="pt-2 text-slate-400">
         Copyright © 2026 張瀚文 Han-Wen Chang. Built with Care for GitHub Pages.
@@ -975,10 +1076,10 @@
 
   <!-- ========================================================================
        區塊 10：專案細節彈出視窗對話盒 (Interactive Project Modal)
-       由 main.js 動態注入 modalContent 結構化內容
+       由 main.js 動態注入 modalContent 結構化 STAR 內容與視覺化架構圖
        ======================================================================== -->
-  <div id="projectModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
-    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto modal-surface p-6 sm:p-8 text-left">
+  <div id="projectModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto modal-surface p-6 sm:p-8 text-left">
       <!-- 關閉視窗右上按鈕 -->
       <button onclick="closeModal()" class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" aria-label="關閉視窗">
         <i class="fa-solid fa-xmark text-lg"></i>
@@ -1015,4 +1116,3 @@
   <script src="js/main.js"></script>
 </body>
 </html>
-

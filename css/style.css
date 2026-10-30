@@ -12,14 +12,14 @@
  * 1. CSS 自定義變數 (Design Tokens & Color Palette)
  * 2. 基礎全域樣式與字型設定 (Base & Typography)
  * 3. 自定義滾動條 (Custom Scrollbar)
- * 4. 導航列與毛玻璃特效 (Navigation & Glassmorphism)
+ * 4. 導航列、ScrollSpy 高亮與毛玻璃特效 (Navigation & ScrollSpy)
  * 5. 柔和卡片與微交互陰影 (Soft Card Components & Shadows)
  * 6. 標籤與晶片徽章 (Badges & Pills)
  * 7. 時間軸設計 (Experience Timeline)
  * 8. 專案篩選器與卡片過渡動效 (Project Filter & Transitions)
- * 9. 彈出視窗對話盒 (Interactive Modal)
+ * 9. 彈出視窗對話盒與視覺化架構圖元件 (Modal & Visual Flow Diagrams)
  * 10. Toast 浮動提示元件 (Toast Notification)
- * 11. 列印與無障礙優化 (Print & Accessibility)
+ * 11. 列印履歷與無障礙優化 (Print Resume & Accessibility)
  * ==============================================================================
  */
 
@@ -132,7 +132,7 @@ body {
 }
 
 /* ==========================================================================
-   4. 導航列與毛玻璃特效 (Navigation & Glassmorphism)
+   4. 導航列、ScrollSpy 高亮與毛玻璃特效 (Navigation & ScrollSpy)
    ========================================================================== */
 .glass-nav {
   background: var(--bg-glass);
@@ -145,6 +145,13 @@ body {
 .glass-nav.scrolled {
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
   background: rgba(255, 255, 255, 0.94);
+}
+
+/* ScrollSpy 當前滾動章節導航高亮狀態 */
+.nav-link.active {
+  color: var(--color-brand-sage);
+  background-color: var(--color-brand-sage-light);
+  font-weight: 600;
 }
 
 /* 柔和光暈特效（用於重要徽章或區塊裝飾） */
@@ -289,7 +296,7 @@ body {
 }
 
 /* ==========================================================================
-   9. 彈出視窗對話盒 (Interactive Modal)
+   9. 彈出視窗對話盒與視覺化架構圖元件 (Modal & Visual Flow Diagrams)
    ========================================================================== */
 .modal-backdrop {
   background-color: rgba(15, 23, 42, 0.55);
@@ -304,6 +311,22 @@ body {
   border: 1px solid #e2e8f0;
 }
 
+/* Modal 內部視覺化流程架構圖卡片 */
+.flow-diagram-box {
+  background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.flow-step-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.75rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
 /* ==========================================================================
    10. Toast 浮動提示元件 (Toast Notification)
    ========================================================================== */
@@ -312,20 +335,30 @@ body {
 }
 
 /* ==========================================================================
-   11. 列印與無障礙優化 (Print & Accessibility)
+   11. 列印履歷與無障礙優化 (Print Resume & Accessibility)
    ========================================================================== */
 @media print {
-  nav, footer, .no-print, #projectModal, #toast, .filter-btn {
+  header, nav, footer, .no-print, #projectModal, #toast, .filter-btn {
     display: none !important;
   }
   body {
     background: #ffffff !important;
     color: #000000 !important;
+    font-size: 11pt;
+  }
+  section {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+  /* 列印時強制顯示所有專案卡片，不受篩選器隱藏影響 */
+  .project-card.hidden {
+    display: flex !important;
   }
   .soft-card {
     box-shadow: none !important;
-    border: 1px solid #cccccc !important;
+    border: 1px solid #cbd5e1 !important;
     break-inside: avoid;
+    page-break-inside: avoid;
   }
 }
 
